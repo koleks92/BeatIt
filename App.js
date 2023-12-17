@@ -12,7 +12,7 @@ export default function App() {
   useEffect(() => {
     async function prepare() {
       try {
-        await SplashScreen.preventAutoHideAsync();
+        console.log("Here")
       } catch (e) {
         console.warn(e);
       } finally {
