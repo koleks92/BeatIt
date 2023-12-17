@@ -1,8 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
+import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation';
+import { NavigationContainer } from '@react-navigation/native';
+import { PaperProvider } from 'react-native-paper';
+import PadsScreen from "./screens/PadsScreen";
+import PianoScreen from "./screens/PianoScreen";
+
+const Tab = createMaterialBottomTabNavigator();
+
+function MyTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={PadsScreen} />
+      <Tab.Screen name="Settings" component={PianoScreen} />
+    </Tab.Navigator>
+  );
+}
 
 
 export default function App() {
@@ -12,7 +27,7 @@ export default function App() {
   useEffect(() => {
     async function prepare() {
       try {
-        console.log("Here")
+        console.log("SplashScreen")
       } catch (e) {
         console.warn(e);
       } finally {
@@ -33,17 +48,17 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider>
+    <NavigationContainer>
+      <MyTabs />
+</NavigationContainer>
+    </PaperProvider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
