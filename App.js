@@ -13,8 +13,6 @@ export default function App() {
     async function prepare() {
       try {
         await SplashScreen.preventAutoHideAsync();
-        // Pre-load database
-        init();
       } catch (e) {
         console.warn(e);
       } finally {
