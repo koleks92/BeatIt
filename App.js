@@ -7,14 +7,18 @@ import { NavigationContainer } from '@react-navigation/native';
 import { PaperProvider } from 'react-native-paper';
 import PadsScreen from "./screens/PadsScreen";
 import PianoScreen from "./screens/PianoScreen";
+import { Colors } from './constants/colors';
 
 const Tab = createMaterialBottomTabNavigator();
 
 function MyTabs() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={PadsScreen} />
-      <Tab.Screen name="Settings" component={PianoScreen} />
+    <Tab.Navigator
+    activeColor = {Colors.text}
+    inactiveColor= {Colors.text2}
+    barStyle={{ backgroundColor: Colors.bar }}>
+      <Tab.Screen name="PADS" component={PadsScreen} />
+      <Tab.Screen name="PIANO" component={PianoScreen} />
     </Tab.Navigator>
   );
 }
