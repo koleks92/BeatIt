@@ -1,28 +1,56 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import React, { useCallback, useEffect, useState } from 'react';
-import * as SplashScreen from 'expo-splash-screen';
-import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation';
-import { NavigationContainer } from '@react-navigation/native';
-import { PaperProvider } from 'react-native-paper';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View, Image } from "react-native";
+import React, { useCallback, useEffect, useState } from "react";
+import * as SplashScreen from "expo-splash-screen";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
 import PadsScreen from "./screens/PadsScreen";
 import PianoScreen from "./screens/PianoScreen";
-import { Colors } from './constants/colors';
+import { Colors } from "./constants/colors";
 
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 
 function MyTabs() {
   return (
     <Tab.Navigator
-    activeColor = {Colors.text}
-    inactiveColor= {Colors.text2}
-    barStyle={{ backgroundColor: Colors.bar }}>
-      <Tab.Screen name="PADS" component={PadsScreen} />
-      <Tab.Screen name="PIANO" component={PianoScreen} />
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === "PADS") {
+            iconName = focused
+              ? require("./assets/icons/pads.png")
+              : require("./assets/icons/pads.png");
+          } else if (route.name === "PIANO") {
+            iconName = focused
+              ? require("./assets/icons/piano.png")
+              : require("./assets/icons/piano.png");
+          }
+
+          return <Image source={iconName} style={{ width: 48, height: 48, tintColor: color }} />;
+        },
+        tabBarActiveTintColor: Colors.text,
+        tabBarLabel: () => null, // Hide labels by returning null
+        tabBarStyle: { backgroundColor: Colors.bar, height: 80 },
+      })}
+    >
+      <Tab.Screen
+        name="PADS"
+        component={PadsScreen}
+        options={{
+          headerShown: false, // Hide the top label for this screen
+        }}
+      />
+      <Tab.Screen
+        name="PIANO"
+        component={PianoScreen}
+        options={{
+          headerShown: false, // Hide the top label for this screen
+        }}
+      />
     </Tab.Navigator>
   );
 }
-
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -31,7 +59,7 @@ export default function App() {
   useEffect(() => {
     async function prepare() {
       try {
-        console.log("SplashScreen")
+        console.log("SplashScreen");
       } catch (e) {
         console.warn(e);
       } finally {
@@ -52,18 +80,16 @@ export default function App() {
   }
 
   return (
-    <PaperProvider>
     <NavigationContainer>
       <MyTabs />
-</NavigationContainer>
-    </PaperProvider>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
