@@ -6,7 +6,7 @@ function Background({ children }) {
         <View style={styles.root}>
           <ImageBackground
             source={require("../../assets/background.jpg")}
-            resizeMode='contain'
+            resizeMode='cover'
             style={styles.root}
             imageStyle={styles.backgroundImage}
           >
@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     root: {
       flex: 1,
       backgroundColor: Colors.background,
+      opacity: 0.8
     },
     backgroundImage: {
       flex: 1,
