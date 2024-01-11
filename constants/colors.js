@@ -1,6 +1,7 @@
 // Constant colors for app
 
 export const Colors = {
+    bar: '#111111',
     background: '#4A5D5E',
     background2: '#6A1B9A',
     text: '#FFFFFF',
