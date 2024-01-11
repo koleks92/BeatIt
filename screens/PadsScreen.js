@@ -1,12 +1,12 @@
 // Shows pads/mpc sceeen
 
-import { Text } from "react-native";
+import { SafeAreaView, Text, StyleSheet } from "react-native";
 import Background from "../components/UI/Background";
 
 function PadsScreen() {
   return (
     <Background>
-      <Text>Pads</Text>
+        <Text>Pads</Text>
     </Background>
   );
 }

@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import * as SplashScreen from "expo-splash-screen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -27,11 +27,16 @@ function MyTabs() {
               : require("./assets/icons/piano.png");
           }
 
-          return <Image source={iconName} style={{ width: 48, height: 48, tintColor: color }} />;
+          return (
+            <Image
+              source={iconName}
+              style={{ width: 42, height: 42, tintColor: color }}
+            />
+          );
         },
         tabBarActiveTintColor: Colors.text,
         tabBarLabel: () => null, // Hide labels by returning null
-        tabBarStyle: { backgroundColor: Colors.bar, height: 80 },
+        tabBarStyle: { backgroundColor: Colors.bar, height: 60 },
       })}
     >
       <Tab.Screen
@@ -80,16 +85,19 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <MyTabs />
-    </NavigationContainer>
+    <>
+      <StatusBar style="auto" />
+      <SafeAreaView style={styles.container}>
+        <NavigationContainer>
+          <MyTabs />
+        </NavigationContainer>
+      </SafeAreaView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
