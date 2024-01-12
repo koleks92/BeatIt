@@ -10,8 +10,9 @@ import { Colors } from "./constants/colors";
 
 const Tab = createBottomTabNavigator();
 
-function MyTabs() {
+function Tabs() {
   return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: Colors.bar }}>
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
@@ -54,6 +55,7 @@ function MyTabs() {
         }}
       />
     </Tab.Navigator>
+    </SafeAreaView>
   );
 }
 
@@ -85,14 +87,9 @@ export default function App() {
   }
 
   return (
-    <>
-      <StatusBar style="auto" />
-      <SafeAreaView style={styles.container}>
         <NavigationContainer>
-          <MyTabs />
+          <Tabs />
         </NavigationContainer>
-      </SafeAreaView>
-    </>
   );
 }
 
