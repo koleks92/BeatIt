@@ -36,8 +36,13 @@ function Tabs() {
             );
           },
           tabBarActiveTintColor: Colors.text,
+          tabBarActiveBackgroundColor: Colors.background,
           tabBarLabel: () => null, // Hide labels by returning null
-          tabBarStyle: { backgroundColor: Colors.bar, height: 60 },
+          tabBarStyle: {
+            backgroundColor: Colors.bar,
+            height: 60,
+            borderTopWidth: 0,
+          },
         })}
       >
         <Tab.Screen
