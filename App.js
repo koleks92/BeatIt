@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
+import { StyleSheet, Image, View, Dimensions } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import * as SplashScreen from "expo-splash-screen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -7,31 +7,37 @@ import { NavigationContainer } from "@react-navigation/native";
 import PadsScreen from "./screens/PadsScreen";
 import PianoScreen from "./screens/PianoScreen";
 import { Colors } from "./constants/colors";
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 const Tab = createBottomTabNavigator();
+const scrW = Dimensions.get("window").width;
+const scrH = Dimensions.get("window").height;
 
 function Tabs() {
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: Colors.bar }}>
+
       <Tab.Navigator
         screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
+          tabBarIcon: ({ focused, color }) => {
             let iconName;
-
             if (route.name === "PADS") {
-              iconName = focused
-                ? require("./assets/icons/pads.png")
-                : require("./assets/icons/pads.png");
+              iconName = require("./assets/icons/pads.png");
             } else if (route.name === "PIANO") {
-              iconName = focused
-                ? require("./assets/icons/piano.png")
-                : require("./assets/icons/piano.png");
+              iconName = require("./assets/icons/piano.png");
             }
 
             return (
               <Image
                 source={iconName}
-                style={{ width: 42, height: 42, tintColor: color }}
+                style={{
+                  width: scrH * 0.05,
+                  height: scrH * 0.05,
+                  tintColor: color,
+                }}
               />
             );
           },
@@ -40,7 +46,7 @@ function Tabs() {
           tabBarLabel: () => null, // Hide labels by returning null
           tabBarStyle: {
             backgroundColor: Colors.bar,
-            height: 60,
+            height: scrH * 0.07,
             borderTopWidth: 0,
           },
         })}
@@ -60,7 +66,6 @@ function Tabs() {
           }}
         />
       </Tab.Navigator>
-    </SafeAreaView>
   );
 }
 
@@ -92,9 +97,14 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <Tabs />
-    </NavigationContainer>
+    <>
+      <StatusBar style="dark-content" />
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Tabs />
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </>
   );
 }
 

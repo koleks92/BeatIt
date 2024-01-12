@@ -1,2 +1,1 @@
-- Navigation bar top line styling
 - SafeAreView for screens !
