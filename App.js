@@ -7,65 +7,60 @@ import { NavigationContainer } from "@react-navigation/native";
 import PadsScreen from "./screens/PadsScreen";
 import PianoScreen from "./screens/PianoScreen";
 import { Colors } from "./constants/colors";
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const Tab = createBottomTabNavigator();
 const scrW = Dimensions.get("window").width;
 const scrH = Dimensions.get("window").height;
 
 function Tabs() {
-
   return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color }) => {
+          let iconName;
+          if (route.name === "PADS") {
+            iconName = require("./assets/icons/pads.png");
+          } else if (route.name === "PIANO") {
+            iconName = require("./assets/icons/piano.png");
+          }
 
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color }) => {
-            let iconName;
-            if (route.name === "PADS") {
-              iconName = require("./assets/icons/pads.png");
-            } else if (route.name === "PIANO") {
-              iconName = require("./assets/icons/piano.png");
-            }
-
-            return (
-              <Image
-                source={iconName}
-                style={{
-                  width: scrH * 0.05,
-                  height: scrH * 0.05,
-                  tintColor: color,
-                }}
-              />
-            );
-          },
-          tabBarActiveTintColor: Colors.text,
-          tabBarActiveBackgroundColor: Colors.background,
-          tabBarLabel: () => null, // Hide labels by returning null
-          tabBarStyle: {
-            backgroundColor: Colors.bar,
-            height: scrH * 0.07,
-            borderTopWidth: 0,
-          },
-        })}
-      >
-        <Tab.Screen
-          name="PADS"
-          component={PadsScreen}
-          options={{
-            headerShown: false, // Hide the top label for this screen
-          }}
-        />
-        <Tab.Screen
-          name="PIANO"
-          component={PianoScreen}
-          options={{
-            headerShown: false, // Hide the top label for this screen
-          }}
-        />
-      </Tab.Navigator>
+          return (
+            <Image
+              source={iconName}
+              style={{
+                width: scrH * 0.05,
+                height: scrH * 0.05,
+                tintColor: color,
+              }}
+            />
+          );
+        },
+        tabBarActiveTintColor: Colors.text,
+        tabBarActiveBackgroundColor: Colors.background,
+        tabBarLabel: () => null, // Hide labels by returning null
+        tabBarStyle: {
+          backgroundColor: Colors.bar,
+          height: scrH * 0.07,
+          borderTopWidth: 0,
+        },
+      })}
+    >
+      <Tab.Screen
+        name="PADS"
+        component={PadsScreen}
+        options={{
+          headerShown: false, // Hide the top label for this screen
+        }}
+      />
+      <Tab.Screen
+        name="PIANO"
+        component={PianoScreen}
+        options={{
+          headerShown: false, // Hide the top label for this screen
+        }}
+      />
+    </Tab.Navigator>
   );
 }
 
@@ -98,7 +93,7 @@ export default function App() {
 
   return (
     <>
-      <StatusBar style="dark-content" />
+      <StatusBar style="dark" />
       <SafeAreaProvider>
         <NavigationContainer>
           <Tabs />

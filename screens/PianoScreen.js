@@ -8,20 +8,20 @@ function PianoScreen() {
   const insets = useSafeAreaInsets();
 
   return (
-    <View
-      style={{
-        flex: 1,
-        // Paddings to handle safe area
-        paddingTop: insets.top,
-        paddingBottom: insets.bottom,
-        paddingLeft: insets.left,
-        paddingRight: insets.right,
-      }}
-    >
-      <Background>
+    <Background>
+      <View
+        style={{
+          flex: 1,
+          // Paddings to handle safe area
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+          paddingLeft: insets.left,
+          paddingRight: insets.right,
+        }}
+      >
         <Text>Piano</Text>
-      </Background>
-    </View>
+      </View>
+    </Background>
   );
 }
 
