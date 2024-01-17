@@ -3,6 +3,7 @@
 import { Text, View } from "react-native";
 import Background from "../components/UI/Background";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Pads from "../components/Pads/Pads";
 
 function PadsScreen() {
   const insets = useSafeAreaInsets();
@@ -19,7 +20,7 @@ function PadsScreen() {
           paddingRight: insets.right,
         }}
       >
-        <Text>Pads</Text>
+        <Pads />
       </View>
     </Background>
   );
