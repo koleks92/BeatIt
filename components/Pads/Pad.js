@@ -1,14 +1,22 @@
 import { View, Text, Pressable, StyleSheet, Dimensions} from "react-native";
+import { Colors } from "../../constants/colors";
+import { LinearGradient } from "expo-linear-gradient";
+
 
 const scrW = Dimensions.get("window").width;
-const scrH = Dimensions.get("window").height;
 
 function Pad({ onPress }) {
   return (
-    <View style={styles.padOuter}>
+    <View style= {styles.padOuter}>
+        <LinearGradient
+        // Background Linear Gradient
+        colors={[Colors.background, Colors.bar]}
+        style={styles.root}
+      >
       <Pressable onPress={onPress} 
       style = {({pressed}) => [{width: scrW * 0.3, height: scrW * 0.3}, styles.padInner]}>
         </Pressable>
+        </LinearGradient>
     </View>
   );
 }
@@ -19,9 +27,11 @@ const styles = StyleSheet.create({
     padOuter: {
         margin: scrW * 0.01,
         borderRadius: 10,
-        overflow: 'hidden'
+        borderColor: Colors.accent ,
+        borderWidth: 2,
+        overflow: 'hidden',
     },
     padInner: {
-        backgroundColor: "#cccccc"
+        opacity: 0.0,
     }
 })
