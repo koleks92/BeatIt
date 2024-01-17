@@ -1,1 +1,10 @@
-- SafeAreView for screens !
+- Pad styling:
+    - Change border color when pressed
+    - Change opacity when pressed
+    - Sounds
+    - Shadow,
+    - Colors (linear gradient)?
+
+
+- General:
+    - Loading ( loading app screen when linear gradient, sounds etc.)
