@@ -7,7 +7,7 @@ const scrW = Dimensions.get("window").width;
 function Pad({ onPress }) {
   return (
     <Pressable
-      onPress={onPress}
+        onPress={onPress}
       style={({ pressed }) => [
         styles.padOuter,
         pressed ? styles.padOuterPressed : null,
@@ -16,7 +16,6 @@ function Pad({ onPress }) {
       <LinearGradient
         // Background Linear Gradient
         colors={[Colors.background, Colors.bar]}
-        style={styles.root}
       >
         <View style={styles.padInner}></View>
       </LinearGradient>

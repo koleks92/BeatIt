@@ -1,8 +1,6 @@
 - Pad styling:
-    - Change border color when pressed
-    - Change opacity when pressed
+    - Multitouch doesnt work ! ! !
     - Sounds
-    - Shadow,
     - Colors (linear gradient)?
 
 
