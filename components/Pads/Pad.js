@@ -1,26 +1,47 @@
-import { View, Pressable, StyleSheet, Dimensions } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Dimensions } from "react-native";
+import {
+  GestureDetector,
+  Gesture,
+  GestureHandlerRootView,
+} from "react-native-gesture-handler";
 import { Colors } from "../../constants/colors";
 import { LinearGradient } from "expo-linear-gradient";
 
 const scrW = Dimensions.get("window").width;
 
-function Pad({ onPress }) {
-  return (
-    <Pressable
-        onPress={onPress}
-      style={({ pressed }) => [
+function Pad({ children, onBegin, onEnd, maxDuration = 100000 }) {
+  const [isPressed, setPressed] = useState(false);
+  const tapGesture = Gesture.Tap()
+    .maxDuration(maxDuration)
+    .onBegin(() => {
+      setPressed(true);
+      onBegin();
+    })
+    .onEnd(() => {
+      setPressed(false);
+      onEnd();
+    });
+
+    return (
+      <GestureHandlerRootView>
+        <GestureDetector gesture={tapGesture}>
+          <View style={({ pressed }) => [
         styles.padOuter,
         pressed ? styles.padOuterPressed : null,
-      ]}
-    >
-      <LinearGradient
+      ]}>
+            <LinearGradient
         // Background Linear Gradient
         colors={[Colors.background, Colors.bar]}
       >
         <View style={styles.padInner}></View>
       </LinearGradient>
-    </Pressable>
-  );
+          </View>
+        </GestureDetector>
+      </GestureHandlerRootView>
+    );
+  
+  
 }
 
 export default Pad;
