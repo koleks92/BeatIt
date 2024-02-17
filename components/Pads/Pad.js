@@ -26,10 +26,8 @@ function Pad({ children, onBegin, onEnd, maxDuration = 100000 }) {
     return (
       <GestureHandlerRootView>
         <GestureDetector gesture={tapGesture}>
-          <View style={({ pressed }) => [
-        styles.padOuter,
-        pressed ? styles.padOuterPressed : null,
-      ]}>
+          <View style={[
+        styles.padOuter, isPressed && styles.padOuterPressed]}>
             <LinearGradient
         // Background Linear Gradient
         colors={[Colors.background, Colors.bar]}
