@@ -1,13 +1,22 @@
 import { View, StyleSheet } from "react-native";
 import Pad from "./Pad";
+import { Audio } from  'expo-av';
+import { useEffect, useState } from 'react';
 
-function Pads() {
-  const onBegin = (sound) => {
-    console.log(sound + " in");
+
+
+function Pads({ sounds }) {
+
+  const padsFiles = sounds;
+
+  const onBegin = (index)  => {
+    padsFiles[index].playAsync()
   };
 
-  const onEnd = (sound) => {
-    console.log(sound + " out");
+  const onEnd = (index) => {
+    if (padsFiles[index]._loaded) {
+      padsFiles[index].unloadAsync();
+    }
   };
 
   return (
@@ -16,13 +25,21 @@ function Pads() {
         <View style={styles.rowPads}>
           <Pad
             onBegin={() => {
+              onBegin(0);
+            }}
+            onEnd={() => {
+              onEnd(0);
+            }}
+          />
+          
+          <Pad
+            onBegin={() => {
               onBegin(1);
             }}
             onEnd={() => {
               onEnd(1);
             }}
           />
-          
           <Pad
             onBegin={() => {
               onBegin(2);
@@ -31,6 +48,8 @@ function Pads() {
               onEnd(2);
             }}
           />
+        </View>
+        <View style={styles.rowPads}>
           <Pad
             onBegin={() => {
               onBegin(3);
@@ -39,8 +58,6 @@ function Pads() {
               onEnd(3);
             }}
           />
-        </View>
-        <View style={styles.rowPads}>
           <Pad
             onBegin={() => {
               onBegin(4);
@@ -57,6 +74,8 @@ function Pads() {
               onEnd(5);
             }}
           />
+        </View>
+        <View style={styles.rowPads}>
           <Pad
             onBegin={() => {
               onBegin(6);
@@ -65,8 +84,6 @@ function Pads() {
               onEnd(6);
             }}
           />
-        </View>
-        <View style={styles.rowPads}>
           <Pad
             onBegin={() => {
               onBegin(7);
@@ -83,6 +100,8 @@ function Pads() {
               onEnd(8);
             }}
           />
+        </View>
+        <View style={styles.rowPads}>
           <Pad
             onBegin={() => {
               onBegin(9);
@@ -91,8 +110,6 @@ function Pads() {
               onEnd(9);
             }}
           />
-        </View>
-        <View style={styles.rowPads}>
           <Pad
             onBegin={() => {
               onBegin(10);
@@ -109,6 +126,8 @@ function Pads() {
               onEnd(11);
             }}
           />
+        </View>
+        <View style={styles.rowPads}>
           <Pad
             onBegin={() => {
               onBegin(12);
@@ -117,8 +136,6 @@ function Pads() {
               onEnd(12);
             }}
           />
-        </View>
-        <View style={styles.rowPads}>
           <Pad
             onBegin={() => {
               onBegin(13);
@@ -135,18 +152,11 @@ function Pads() {
               onEnd(14);
             }}
           />
-          <Pad
-            onBegin={() => {
-              onBegin(15);
-            }}
-            onEnd={() => {
-              onEnd(15);
-            }}
-          />
         </View>
       </View>
     </View>
   );
+  
 }
 
 export default Pads;
