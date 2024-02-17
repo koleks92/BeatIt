@@ -4,9 +4,15 @@ import { Text, View } from "react-native";
 import Background from "../components/UI/Background";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Pads from "../components/Pads/Pads";
+import { Audio } from  'expo-av';
+import { useState, useEffect } from "react";
 
-function PadsScreen() {
+
+function PadsScreen({ route }) {
   const insets = useSafeAreaInsets();
+  const { padsFiles } = route.params; // Load pads sounds files
+
+  
 
   return (
     <Background>
@@ -20,7 +26,7 @@ function PadsScreen() {
           paddingRight: insets.right,
         }}
       >
-        <Pads />
+        <Pads sounds = {padsFiles}/>
       </View>
     </Background>
   );
