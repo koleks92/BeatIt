@@ -22,6 +22,7 @@ function Pads() {
               onEnd(1);
             }}
           />
+          
           <Pad
             onBegin={() => {
               onBegin(2);

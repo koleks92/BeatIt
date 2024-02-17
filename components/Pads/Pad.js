@@ -10,7 +10,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 const scrW = Dimensions.get("window").width;
 
-function Pad({ children, onBegin, onEnd, maxDuration = 100000 }) {
+function Pad({ onBegin, onEnd, maxDuration = 10000 }) {
   const [isPressed, setPressed] = useState(false);
   const tapGesture = Gesture.Tap()
     .maxDuration(maxDuration)
