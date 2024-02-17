@@ -1,8 +1,10 @@
 - Pad styling:
-    - Multitouch doesnt work ! ! !
-    - Sounds
+    - Pads
     - Colors (linear gradient)?
+
+- Sounds:
+    - Pads are playing sounds only once ? ! ! !
 
 
 - General:
-    - Loading ( loading app screen when linear gradient, sounds etc.)
+    - Loading ( loading app screen when linear gradient, etc.)
