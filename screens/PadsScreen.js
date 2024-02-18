@@ -1,18 +1,18 @@
 // Shows pads/mpc sceeen
 
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import Background from "../components/UI/Background";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Pads from "../components/Pads/Pads";
-import { Audio } from  'expo-av';
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { SoundsContext } from "../store/SoundsContext";
+
+
 
 
 function PadsScreen({ route }) {
   const insets = useSafeAreaInsets();
-  const { padsFiles } = route.params; // Load pads sounds files
-
-  
+  const padsFiles = useContext(SoundsContext);
 
   return (
     <Background>
