@@ -18,7 +18,6 @@ const padsFiles = Array.from({ length: NUM_PADS }, (_, index) => new Audio.Sound
 
 async function loadAudioFiles() {
   try {
-
     await padsFiles[0].loadAsync(require('./sounds/pads/bass_1.mp3'))
     await padsFiles[1].loadAsync(require('./sounds/pads/bass_2.mp3'))
     await padsFiles[2].loadAsync(require('./sounds/pads/bass_3.mp3'))
@@ -34,7 +33,6 @@ async function loadAudioFiles() {
     await padsFiles[12].loadAsync(require('./sounds/pads/snare_1.mp3'))
     await padsFiles[13].loadAsync(require('./sounds/pads/snare_1.mp3'))
     await padsFiles[14].loadAsync(require('./sounds/pads/snare_1.mp3'))
-
     console.log("Sucessfull sounds loading!")
   } catch (error) {
     console.error('Error loading', error)

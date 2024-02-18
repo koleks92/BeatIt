@@ -3,19 +3,23 @@ import Pad from "./Pad";
 import { Audio } from  'expo-av';
 import { useEffect, useState } from 'react';
 
-
-
 function Pads({ sounds }) {
 
   const padsFiles = sounds;
 
-  const onBegin = (index)  => {
-    padsFiles[index].playAsync()
+  const onBegin = async (index) => {
+    try {
+      await padsFiles[index].replayAsync();
+    } catch (error) {
+      console.error(`Error playing sound ${index}:`, error);
+    }
   };
 
-  const onEnd = (index) => {
-    if (padsFiles[index]._loaded) {
-      padsFiles[index].unloadAsync();
+  const onEnd = async (index) => {
+    try {
+      await padsFiles[index].pauseAsync();
+    } catch (error) {
+      console.error(`Error unloading sound ${index}:`, error);
     }
   };
 
