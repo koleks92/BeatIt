@@ -16,6 +16,8 @@ const scrH = Dimensions.get("window").height;
 const NUM_PADS = 15;
 const padsFiles = Array.from({ length: NUM_PADS }, (_, index) => new Audio.Sound());
 
+
+// Load audio files
 async function loadAudioFiles() {
   try {
     await padsFiles[0].loadAsync(require('./sounds/pads/bass_1.mp3'))
@@ -30,9 +32,9 @@ async function loadAudioFiles() {
     await padsFiles[9].loadAsync(require('./sounds/pads/kick_1.mp3'))
     await padsFiles[10].loadAsync(require('./sounds/pads/kick_2.mp3'))
     await padsFiles[11].loadAsync(require('./sounds/pads/kick_3.mp3'))
-    await padsFiles[12].loadAsync(require('./sounds/pads/snare_1.mp3'))
-    await padsFiles[13].loadAsync(require('./sounds/pads/snare_1.mp3'))
-    await padsFiles[14].loadAsync(require('./sounds/pads/snare_1.mp3'))
+    await padsFiles[12].loadAsync(require('./sounds/pads/voice_1.mp3'))
+    await padsFiles[13].loadAsync(require('./sounds/pads/voice_2.mp3'))
+    await padsFiles[14].loadAsync(require('./sounds/pads/voice_3.mp3'))
     console.log("Sucessfull sounds loading!")
   } catch (error) {
     console.error('Error loading', error)
@@ -67,7 +69,7 @@ function Tabs() {
         tabBarLabel: () => null, // Hide labels by returning null
         tabBarStyle: {
           backgroundColor: Colors.bar,
-          height: scrH * 0.07,
+          height: Platform.OS === 'ios' ? scrH * 0.10 : scrH * 0.07 ,
           borderTopWidth: 0,
         },
       })}
