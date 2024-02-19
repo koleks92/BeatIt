@@ -1,7 +1,5 @@
 import { View, StyleSheet } from "react-native";
 import Pad from "./Pad";
-import { Audio } from  'expo-av';
-import { useEffect, useState } from 'react';
 
 function Pads({ sounds }) {
 
