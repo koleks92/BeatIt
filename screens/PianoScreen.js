@@ -3,6 +3,7 @@
 import { Text, View } from "react-native";
 import Background from "../components/UI/Background";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Piano from "../components/Piano/Piano";
 
 function PianoScreen() {
   const insets = useSafeAreaInsets();
@@ -19,7 +20,7 @@ function PianoScreen() {
           paddingRight: insets.right,
         }}
       >
-        <Text>Piano</Text>
+        <Piano />
       </View>
     </Background>
   );
