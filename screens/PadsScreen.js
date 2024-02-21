@@ -5,14 +5,11 @@ import Background from "../components/UI/Background";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Pads from "../components/Pads/Pads";
 import { useContext } from "react";
-import { SoundsContext } from "../store/SoundsContext";
-
-
-
+import { PadsContext } from "../store/PadsContext";
 
 function PadsScreen({ route }) {
   const insets = useSafeAreaInsets();
-  const padsFiles = useContext(SoundsContext);
+  const padsFiles = useContext(PadsContext);
 
   return (
     <Background>
@@ -26,7 +23,7 @@ function PadsScreen({ route }) {
           paddingRight: insets.right,
         }}
       >
-        <Pads sounds = {padsFiles}/>
+        <Pads sounds={padsFiles} />
       </View>
     </Background>
   );

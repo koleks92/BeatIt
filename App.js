@@ -8,8 +8,7 @@ import PadsScreen from "./screens/PadsScreen";
 import PianoScreen from "./screens/PianoScreen";
 import { Colors } from "./constants/colors";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Audio } from 'expo-av'; 
-import SoundsContextProvider from "./store/SoundsContext";
+import PadsContextProvider from "./store/PadsContext";
 
 const Tab = createBottomTabNavigator();
 const scrW = Dimensions.get("window").width;
@@ -43,7 +42,7 @@ function Tabs() {
         tabBarLabel: () => null, // Hide labels by returning null
         tabBarStyle: {
           backgroundColor: Colors.bar,
-          height: Platform.OS === 'ios' ? scrH * 0.10 : scrH * 0.07 ,
+          height: Platform.OS === "ios" ? scrH * 0.1 : scrH * 0.07,
           borderTopWidth: 0,
         },
       })}
@@ -73,7 +72,7 @@ export default function App() {
   useEffect(() => {
     async function prepare() {
       try {
-        console.log("Loading...")
+        console.log("Loading...");
       } catch (e) {
         console.warn(e);
       } finally {
@@ -94,14 +93,16 @@ export default function App() {
   }
 
   return (
-    <SoundsContextProvider>
+    <>
       <StatusBar style="dark" />
-      <SafeAreaProvider>
-        <NavigationContainer>
-          <Tabs />
-        </NavigationContainer>
-      </SafeAreaProvider>
-    </SoundsContextProvider>
+      <PadsContextProvider>
+        <SafeAreaProvider>
+          <NavigationContainer>
+            <Tabs />
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </PadsContextProvider>
+    </>
   );
 }
 
