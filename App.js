@@ -8,8 +8,7 @@ import PadsScreen from "./screens/PadsScreen";
 import PianoScreen from "./screens/PianoScreen";
 import { Colors } from "./constants/colors";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import PadsContextProvider from "./store/PadsContext";
-import PianoContextProvider from "./store/PianoContext";
+import SoundsContextProvider from "./store/SoundsContex";
 
 const Tab = createBottomTabNavigator();
 const scrW = Dimensions.get("window").width;
@@ -94,18 +93,14 @@ export default function App() {
   }
 
   return (
-    <>
+    <SoundsContextProvider>
       <StatusBar style="dark" />
-      <PadsContextProvider>
-        <PianoContextProvider>
           <SafeAreaProvider>
             <NavigationContainer>
               <Tabs />
             </NavigationContainer>
           </SafeAreaProvider>
-        </PianoContextProvider>
-      </PadsContextProvider>
-    </>
+    </SoundsContextProvider>
   );
 }
 

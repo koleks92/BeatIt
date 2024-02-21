@@ -4,14 +4,14 @@ import { View } from "react-native";
 import Background from "../components/UI/Background";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Piano from "../components/Piano/Piano";
-import { PianoContext } from "../store/PianoContext";
 import { useContext } from "react";
+import { SoundsContext } from "../store/SoundsContex";
 
 
 
 function PianoScreen() {
   const insets = useSafeAreaInsets();
-  const pianoFiles = useContext(PianoContext);
+  const { pianoFiles } = useContext(SoundsContext);
 
   return (
     <Background>
@@ -32,3 +32,4 @@ function PianoScreen() {
 }
 
 export default PianoScreen;
+ 
