@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     },
     whiteOuterPressed: {
         opacity: 0.99,
-        height: whiteHeight * 0.99,
-        width: whiteWidth * 0.99
+        transform: [{ scale: 0.99 }]
     }
 })
