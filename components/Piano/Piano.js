@@ -4,116 +4,114 @@ import Black from "./Black";
 
 const scrW = Dimensions.get("window").width;
 
-function Piano() {
+function Piano({ sounds }) {
+
+
+    const pianoFiles = sounds;
+
+    // Indexes look PianoContext.js
+
+    const onBegin = async (index) => {
+      try {
+        await pianoFiles[index].replayAsync();
+      } catch (error) {
+        console.error(`Error playing sound ${index}:`, error);
+      }
+    };
+  
+    const onEnd = async (index) => {
+      try {
+        await pianoFiles[index].pauseAsync();
+      } catch (error) {
+        console.error(`Error unloading sound ${index}:`, error);
+      }
+    };
+
   return (
     <View style={styles.root}>
       <View>
         <View style={styles.whiteContainer}>
           <White
-            onBegin={() => console.log("C In")}
-            onEnd={() => {
-              console.log("C Out");
-            }}
+            onBegin={() => onBegin(0)}
+            onEnd={() => onEnd(0)}
           />
         </View>
       </View>
       <View>
         <View style={styles.blackContainer}>
           <Black
-            onBegin={() => console.log("Cs In")}
-            onEnd={() => {
-              console.log("Cs Out");
-            }}
+            onBegin={() => onBegin(1)}
+            onEnd={() => onEnd(1)}
           />
         </View>
         <View style={styles.whiteContainer}>
           <White
-            onBegin={() => console.log("D In")}
-            onEnd={() => {
-              console.log("D Out");
-            }}
+            onBegin={() => onBegin(2)}
+            onEnd={() => onEnd(2)}
           />
         </View>
       </View>
       <View>
         <View style={styles.blackContainer}>
           <Black
-            onBegin={() => console.log("Ds In")}
-            onEnd={() => {
-              console.log("Ds Out");
-            }}
+            onBegin={() => onBegin(3)}
+            onEnd={() => onEnd(3)}
           />
         </View>
         <View style={styles.whiteContainer}>
           <White
-            onBegin={() => console.log("E In")}
-            onEnd={() => {
-              console.log("E Out");
-            }}
+            onBegin={() => onBegin(4)}
+            onEnd={() => onEnd(4)}
           />
         </View>
       </View>
       <View>
         <View style={styles.whiteContainer}>
           <White
-            onBegin={() => console.log("F In")}
-            onEnd={() => {
-              console.log("F Out");
-            }}
+            onBegin={() => onBegin(5)}
+            onEnd={() => onEnd(5)}
           />
         </View>
       </View>
       <View>
         <View style={styles.blackContainer}>
           <Black
-            onBegin={() => console.log("Fs In")}
-            onEnd={() => {
-              console.log("Fs Out");
-            }}
+            onBegin={() => onBegin(6)}
+            onEnd={() => onEnd(6)}
           />
         </View>
         <View style={styles.whiteContainer}>
           <White
-            onBegin={() => console.log("G In")}
-            onEnd={() => {
-              console.log("G Out");
-            }}
+            onBegin={() => onBegin(7)}
+            onEnd={() => onEnd(7)}
           />
         </View>
       </View>
       <View>
         <View style={styles.blackContainer}>
           <Black
-            onBegin={() => console.log("Gs In")}
-            onEnd={() => {
-              console.log("Gs Out");
-            }}
+            onBegin={() => onBegin(8)}
+            onEnd={() => onEnd(8)}
           />
         </View>
         <View style={styles.whiteContainer}>
           <White
-            onBegin={() => console.log("A In")}
-            onEnd={() => {
-              console.log("A Out");
-            }}
+            onBegin={() => onBegin(9)}
+            onEnd={() => onEnd(9)}
           />
         </View>
       </View>
       <View>
         <View style={styles.blackContainer}>
           <Black
-            onBegin={() => console.log("As In")}
-            onEnd={() => {
-              console.log("As Out");
-            }}
+            onBegin={() => onBegin(10)}
+            onEnd={() => onEnd(10)}
           />
         </View>
         <View style={styles.whiteContainer}>
           <White
-            onBegin={() => console.log("B In")}
-            onEnd={() => {
-              console.log("B Out");
-            }}
+            onBegin={() => onBegin(11)}
+            onEnd={() => onEnd(11)}
           />
         </View>
       </View>

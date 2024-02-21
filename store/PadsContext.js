@@ -26,7 +26,7 @@ async function loadAudioFiles() {
     await padsFiles[12].loadAsync(require('../sounds/pads/voice_1.mp3'))
     await padsFiles[13].loadAsync(require('../sounds/pads/voice_2.mp3'))
     await padsFiles[14].loadAsync(require('../sounds/pads/voice_3.mp3'))
-    console.log("Sucessfull sounds loading!")
+    console.log("Sucessfull pads sounds loading!")
   } catch (error) {
     console.error('Error loading', error)
   }

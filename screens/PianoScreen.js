@@ -1,12 +1,17 @@
 // Shows piano sceeen
 
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import Background from "../components/UI/Background";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Piano from "../components/Piano/Piano";
+import { PianoContext } from "../store/PianoContext";
+import { useContext } from "react";
+
+
 
 function PianoScreen() {
   const insets = useSafeAreaInsets();
+  const pianoFiles = useContext(PianoContext);
 
   return (
     <Background>
@@ -20,7 +25,7 @@ function PianoScreen() {
           paddingRight: insets.right,
         }}
       >
-        <Piano />
+        <Piano sounds={pianoFiles}/>
       </View>
     </Background>
   );
