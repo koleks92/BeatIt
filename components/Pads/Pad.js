@@ -13,6 +13,7 @@ const scrW = Dimensions.get("window").width;
 function Pad({ onBegin, onEnd, maxDuration = 10000 }) {
   const [isPressed, setPressed] = useState(false);
   const tapGesture = Gesture.Tap()
+    .shouldCancelWhenOutside(false)
     .maxDuration(maxDuration)
     .onBegin(() => {
       setPressed(true);

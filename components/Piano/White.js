@@ -16,6 +16,7 @@ whiteHeight = whiteWidth * 0.25
 function White({ onBegin, onEnd, maxDuration = 10000 }) {
   const [isPressed, setPressed] = useState(false);
   const tapGesture = Gesture.Tap()
+    .shouldCancelWhenOutside(false)
     .maxDuration(maxDuration)
     .onBegin(() => {
       setPressed(true);

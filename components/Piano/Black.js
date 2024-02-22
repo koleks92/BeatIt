@@ -16,6 +16,7 @@ blackHeight = scrW * 0.8 * 0.25 / 2;
 function Black({ onBegin, onEnd, maxDuration = 10000 }) {
   const [isPressed, setPressed] = useState(false);
   const tapGesture = Gesture.Tap()
+  .shouldCancelWhenOutside(false)
     .maxDuration(maxDuration)
     .onBegin(() => {
       setPressed(true);
