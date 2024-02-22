@@ -10,7 +10,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 const scrW = Dimensions.get("window").width;
 
-function Pad({ onBegin, onEnd, maxDuration = 10000 }) {
+function Pad({ onBegin, onEnd, maxDuration = 10000, delay = 1000 }) {
   const [isPressed, setPressed] = useState(false);
   const tapGesture = Gesture.Tap()
     .shouldCancelWhenOutside(false)
@@ -21,26 +21,25 @@ function Pad({ onBegin, onEnd, maxDuration = 10000 }) {
     })
     .onEnd(() => {
       setPressed(false);
-      onEnd();
+      setTimeout(() => {
+        onEnd();
+      }, delay);
     });
 
-    return (
-      <GestureHandlerRootView>
-        <GestureDetector gesture={tapGesture}>
-          <View style={[
-        styles.padOuter, isPressed && styles.padOuterPressed]}>
-            <LinearGradient
-        // Background Linear Gradient
-        colors={[Colors.background, Colors.bar]}
-      >
-        <View style={styles.padInner}></View>
-      </LinearGradient>
-          </View>
-        </GestureDetector>
-      </GestureHandlerRootView>
-    );
-  
-  
+  return (
+    <GestureHandlerRootView>
+      <GestureDetector gesture={tapGesture}>
+        <View style={[styles.padOuter, isPressed && styles.padOuterPressed]}>
+          <LinearGradient
+            // Background Linear Gradient
+            colors={[Colors.background, Colors.bar]}
+          >
+            <View style={styles.padInner}></View>
+          </LinearGradient>
+        </View>
+      </GestureDetector>
+    </GestureHandlerRootView>
+  );
 }
 
 export default Pad;

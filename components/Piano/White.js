@@ -10,10 +10,10 @@ import { Colors } from "../../constants/colors";
 // Dimensions in landscape mode !
 // More comfortable for the user
 const scrW = Dimensions.get("window").width;
-whiteWidth = scrW * 0.8
-whiteHeight = whiteWidth * 0.25
+whiteWidth = scrW * 0.8;
+whiteHeight = whiteWidth * 0.25;
 
-function White({ onBegin, onEnd, maxDuration = 10000 }) {
+function White({ onBegin, onEnd, maxDuration = 10000, delay = 250 }) {
   const [isPressed, setPressed] = useState(false);
   const tapGesture = Gesture.Tap()
     .shouldCancelWhenOutside(false)
@@ -24,14 +24,18 @@ function White({ onBegin, onEnd, maxDuration = 10000 }) {
     })
     .onEnd(() => {
       setPressed(false);
-      onEnd();
+      setTimeout(() => {
+        // Delay to make sure that even with a very short tap, sound is played
+        onEnd();
+      }, delay);
     });
 
   return (
     <GestureHandlerRootView>
       <GestureDetector gesture={tapGesture}>
-        <View style={[styles.white, isPressed && styles.whiteOuterPressed]}>
-        </View>
+        <View
+          style={[styles.white, isPressed && styles.whiteOuterPressed]}
+        ></View>
       </GestureDetector>
     </GestureHandlerRootView>
   );
@@ -40,16 +44,15 @@ function White({ onBegin, onEnd, maxDuration = 10000 }) {
 export default White;
 
 const styles = StyleSheet.create({
-    white: {
-        height: whiteHeight,
-        width: whiteWidth,
-        backgroundColor: "white",
-        borderWidth: 1,
-        borderRadius: 5
-
-    },
-    whiteOuterPressed: {
-        opacity: 0.99,
-        transform: [{ scale: 0.99 }]
-    }
-})
+  white: {
+    height: whiteHeight,
+    width: whiteWidth,
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderRadius: 5,
+  },
+  whiteOuterPressed: {
+    opacity: 0.99,
+    transform: [{ scale: 0.99 }],
+  },
+});
