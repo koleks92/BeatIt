@@ -13,7 +13,7 @@ const scrW = Dimensions.get("window").width;
 blackWidth = scrW * 0.5;
 blackHeight = (scrW * 0.8 * 0.25) / 2;
 
-function Black({ onBegin, onEnd, maxDuration = 10000, delay = 250 }) {
+function Black({ onBegin, onEnd, maxDuration = 10000, delay = 100 }) {
   const [isPressed, setPressed] = useState(false);
   const tapGesture = Gesture.Tap()
     .shouldCancelWhenOutside(false)
