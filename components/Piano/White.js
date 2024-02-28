@@ -13,7 +13,7 @@ const scrW = Dimensions.get("window").width;
 whiteWidth = scrW * 0.8;
 whiteHeight = whiteWidth * 0.25;
 
-function White({ onBegin, onEnd, maxDuration = 10000, delay = 100 }) {
+function White({ onBegin, onEnd, maxDuration = 10000, delay = 20 }) {
   const [isPressed, setPressed] = useState(false);
   const tapGesture = Gesture.Tap()
     .shouldCancelWhenOutside(false)

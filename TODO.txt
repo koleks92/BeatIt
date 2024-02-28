@@ -1,5 +1,4 @@
 - Pad styling:
-    - Pads
     - Colors (linear gradient)?
 
 - Sounds:
@@ -8,8 +7,7 @@
 
 - General:
     - Loading ( loading app screen when linear gradient, etc.)
+    - Create on multitouch component for both Pads and Piano ( cant figure out how to pass isPressed for styling )
 
 Piano:
-    - White key : 1 x 1 (138x22)
-    - Black key : 0.62 x 0.5 (85x11.5)
-    - Landscape mode ? so far its fake, try to make it more resonable¨
+    - Landscape mode ? so far its fake, try to make it more resonable
