@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Piano from "../components/Piano/Piano";
 import { useContext } from "react";
 import { SoundsContext } from "../store/SoundsContex";
+import Metronome from "../components/Metronome/Metronome";
 
 
 
@@ -25,6 +26,7 @@ function PianoScreen() {
           paddingRight: insets.right,
         }}
       >
+        <Metronome />
         <Piano sounds={pianoFiles}/>
       </View>
     </Background>

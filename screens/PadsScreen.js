@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Pads from "../components/Pads/Pads";
 import { useContext } from "react";
 import { SoundsContext } from "../store/SoundsContex";
+import Metronome from "../components/Metronome/Metronome";
 
 function PadsScreen({ route }) {
   const insets = useSafeAreaInsets();
@@ -23,6 +24,7 @@ function PadsScreen({ route }) {
           paddingRight: insets.right,
         }}
       >
+        <Metronome />
         <Pads sounds={padsFiles} />
       </View>
     </Background>
