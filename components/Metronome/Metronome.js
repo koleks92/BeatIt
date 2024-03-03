@@ -1,7 +1,20 @@
 import { useEffect, useState, useRef } from "react";
-import { View, Text, Modal, Pressable, StyleSheet } from "react-native";
+import {
+    View,
+    Text,
+    Modal,
+    Pressable,
+    StyleSheet,
+    Dimensions,
+} from "react-native";
 import { Colors } from "../../constants/colors";
 import { Audio } from "expo-av";
+import ButtonPM from "../UI/ButtonPM";
+import ButtonSS from "../UI/ButtonSS";
+import ButtonClose from "../UI/ButtonClose";
+
+const scrW = Dimensions.get("window").width;
+const scrH = Dimensions.get("window").height;
 
 function Metronome() {
     const [modalVisible, setModalVisible] = useState(false);
@@ -93,46 +106,43 @@ function Metronome() {
             >
                 <View style={styles.modalContainer}>
                     <View style={styles.metronomeContainer}>
+                        <Text style={styles.title}>Metronome</Text>
                         <View style={styles.buttons}>
-                            <Pressable
-                                style={styles.button}
+                            <ButtonPM
                                 onPressIn={onMinusIn}
                                 onPressOut={onMinusOut}
                             >
-                                <Text>-</Text>
-                            </Pressable>
-                            <Text>{BPM}</Text>
-                            <Pressable
-                                style={styles.button}
+                                -
+                            </ButtonPM>
+
+                            <View style={styles.bpmView}>
+                                <Text style={styles.text}>{BPM}</Text>
+                            </View>
+                            <ButtonPM
                                 onPressIn={onPlusIn}
                                 onPressOut={onPlusOut}
                             >
-                                <Text>+</Text>
-                            </Pressable>
+                                +
+                            </ButtonPM>
                         </View>
                         <View style={styles.buttons}>
-                            <Pressable
-                                style={[
-                                    styles.button,
-                                    metronomeOn && styles.buttonOn,
-                                ]}
-                                onPress={() => onBegin()}
-                            >
-                                <Text>Start</Text>
-                            </Pressable>
-                            <Pressable
-                                style={styles.button}
-                                onPress={() => onEnd()}
-                            >
-                                <Text>End</Text>
-                            </Pressable>
+                            <View style={styles.buttonView}>
+                                <ButtonSS
+                                    onPress={() => onBegin()}
+                                    style={metronomeOn}
+                                >
+                                    Start
+                                </ButtonSS>
+                            </View>
+                            <View style={styles.buttonView}>
+                                <ButtonSS onPress={() => onEnd()}>
+                                    Stop
+                                </ButtonSS>
+                            </View>
                         </View>
-                        <Pressable
-                            style={[styles.buttonClose]}
-                            onPress={closeModal}
-                        >
-                            <Text>Close</Text>
-                        </Pressable>
+                        <View style={styles.buttons}>
+                            <ButtonClose onPress={closeModal} />
+                        </View>
                     </View>
                 </View>
             </Modal>
@@ -154,11 +164,12 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     metronomeContainer: {
-        margin: 20,
+        marginHorizontal: scrW * 0.1,
+        marginVertical: scrW * 0.6,
         backgroundColor: Colors.bar,
         color: "white",
         borderRadius: 20,
-        padding: 35,
+        padding: scrW * 0.05,
         alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {
@@ -170,28 +181,29 @@ const styles = StyleSheet.create({
         elevation: 5,
         opacity: 0.9,
     },
+    title: {
+        color: Colors.text2,
+        fontSize: scrW * 0.07,
+    },
     text: {
         color: Colors.text2,
+        fontSize: scrW * 0.06,
     },
-    buttonClose: {
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2,
-        backgroundColor: Colors.icon,
+    bpmView: {
+        justifyContent: "center",
+        alignItems: "center",
+        margin: scrW * 0.05,
+        width: scrW * 0.12,
     },
     buttons: {
         flexDirection: "row",
-        alignContent: "space-around",
-    },
-    button: {
-        width: 100,
-        height: 100,
-        backgroundColor: "lightblue",
-        alignItems: "center",
-        justifyContent: "center",
+        flex: 1,
     },
     buttonOn: {
-        borderWidth: 1,
-        borderColor: "black",
+        borderWidth: 3,
+        borderColor: Colors.accent2,
     },
+    buttonView: {
+        flex: 1
+    }
 });
