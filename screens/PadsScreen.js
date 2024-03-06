@@ -1,12 +1,13 @@
 // Shows pads/mpc sceeen
 
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import Background from "../components/UI/Background";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Pads from "../components/Pads/Pads";
 import { useContext } from "react";
 import { SoundsContext } from "../store/SoundsContex";
 import Metronome from "../components/Metronome/Metronome";
+import TopOptions from "../components/UI/TopOptions";
 
 function PadsScreen({ route }) {
     const insets = useSafeAreaInsets();
@@ -24,9 +25,11 @@ function PadsScreen({ route }) {
                     paddingRight: insets.right,
                 }}
             >
-                <View style={styles.topOptions}>
+                <TopOptions>
                     <Metronome />
-                </View>
+                    <Metronome />
+
+                </TopOptions>
                 <Pads sounds={padsFiles} />
             </View>
         </Background>
@@ -35,10 +38,3 @@ function PadsScreen({ route }) {
 
 export default PadsScreen;
 
-const styles = StyleSheet.create({
-    topOptions: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginHorizontal: "10%",
-    },
-});

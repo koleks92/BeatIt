@@ -6,6 +6,7 @@ import {
     Pressable,
     StyleSheet,
     Dimensions,
+    Image,
 } from "react-native";
 import { Colors } from "../../constants/colors";
 import { Audio } from "expo-av";
@@ -21,7 +22,8 @@ function Metronome() {
     const [modalVisible, setModalVisible] = useState(false);
     const onMinusRef = useRef(null);
     const onPlusRef = useRef(null);
-    const { BPM, updateBPM, metronome, metronomeOn, updateMetronomeOn } = useContext(SoundsContext);
+    const { BPM, updateBPM, metronome, metronomeOn, updateMetronomeOn } =
+        useContext(SoundsContext);
 
     let sound = new Audio.Sound();
     // Load sounds
@@ -145,9 +147,13 @@ function Metronome() {
                     </View>
                 </View>
             </Modal>
-            <View>
+            <View style={styles.iconContainer}>
                 <Pressable onPress={openModal}>
-                    <Text>Metronome</Text>
+                    <Image
+                        source={require("../../assets/icons/metronome.png")}
+                        resizeMode="contain"
+                        style={styles.icon}
+                    />
                 </Pressable>
             </View>
         </>
@@ -203,6 +209,13 @@ const styles = StyleSheet.create({
         borderColor: Colors.accent2,
     },
     buttonView: {
-        flex: 1
+        flex: 1,
+    },
+    iconContainer: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    icon: {
+        height: scrH * 0.06
     }
 });
