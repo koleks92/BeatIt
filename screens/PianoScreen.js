@@ -26,7 +26,6 @@ function PianoScreen() {
                 }}
             >
                 <TopOptions>
-                    <Metronome />
                 </TopOptions>
                 <Piano sounds={pianoFiles} />
             </View>

@@ -26,9 +26,6 @@ function PadsScreen({ route }) {
                 }}
             >
                 <TopOptions>
-                    <Metronome />
-                    <Metronome />
-
                 </TopOptions>
                 <Pads sounds={padsFiles} />
             </View>

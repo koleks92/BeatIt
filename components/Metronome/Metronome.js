@@ -18,7 +18,7 @@ import { SoundsContext } from "../../store/SoundsContex";
 const scrW = Dimensions.get("window").width;
 const scrH = Dimensions.get("window").height;
 
-function Metronome() {
+function Metronome({ iconSize }) {
     const [modalVisible, setModalVisible] = useState(false);
     const onMinusRef = useRef(null);
     const onPlusRef = useRef(null);
@@ -147,12 +147,12 @@ function Metronome() {
                     </View>
                 </View>
             </Modal>
-            <View style={styles.iconContainer}>
+            <View>
                 <Pressable onPress={openModal}>
                     <Image
                         source={require("../../assets/icons/metronome.png")}
                         resizeMode="contain"
-                        style={styles.icon}
+                        style={{ height: iconSize }}
                     />
                 </Pressable>
             </View>
@@ -211,11 +211,4 @@ const styles = StyleSheet.create({
     buttonView: {
         flex: 1,
     },
-    iconContainer: {
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    icon: {
-        height: scrH * 0.06
-    }
 });
