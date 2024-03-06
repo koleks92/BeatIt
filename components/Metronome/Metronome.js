@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import {
     View,
     Text,
@@ -12,17 +12,16 @@ import { Audio } from "expo-av";
 import ButtonPM from "../UI/ButtonPM";
 import ButtonSS from "../UI/ButtonSS";
 import ButtonClose from "../UI/ButtonClose";
+import { SoundsContext } from "../../store/SoundsContex";
 
 const scrW = Dimensions.get("window").width;
 const scrH = Dimensions.get("window").height;
 
 function Metronome() {
     const [modalVisible, setModalVisible] = useState(false);
-    const [BPM, setBPM] = useState(120);
-    const metronome = useRef(null);
     const onMinusRef = useRef(null);
     const onPlusRef = useRef(null);
-    const [metronomeOn, setMetronomeOn] = useState(false);
+    const { BPM, updateBPM, metronome, metronomeOn, updateMetronomeOn } = useContext(SoundsContext);
 
     let sound = new Audio.Sound();
     // Load sounds
@@ -37,7 +36,7 @@ function Metronome() {
         if (BPM === 1) {
         } else {
             onMinusRef.current = setInterval(() => {
-                setBPM((prevBPM) => prevBPM - 1);
+                updateBPM((prevBPM) => prevBPM - 1);
             }, 100);
         }
     };
@@ -51,7 +50,7 @@ function Metronome() {
         if (BPM === 240) {
         } else {
             onPlusRef.current = setInterval(() => {
-                setBPM((prevBPM) => prevBPM + 1);
+                updateBPM((prevBPM) => prevBPM + 1);
             }, 100);
         }
     };
@@ -62,7 +61,7 @@ function Metronome() {
 
     // Start metronome functionality
     const onBegin = () => {
-        setMetronomeOn(true);
+        updateMetronomeOn(true);
         const intervalInMilliSeconds = (60 / BPM) * 1000;
         metronome.current = setInterval(async () => {
             await sound.replayAsync();
@@ -72,7 +71,7 @@ function Metronome() {
     // End metronome functionality
     const onEnd = () => {
         clearInterval(metronome.current);
-        setMetronomeOn(false);
+        updateMetronomeOn(false);
     };
 
     // Handling BPM values
@@ -80,10 +79,10 @@ function Metronome() {
         onEnd();
         if (BPM >= 240) {
             clearInterval(onPlusRef.current);
-            setBPM(240);
+            updateBPM(240);
         } else if (BPM <= 1) {
             clearInterval(onMinusRef.current);
-            setBPM(1);
+            updateBPM(1);
         }
     }, [BPM]);
 
