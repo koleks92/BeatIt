@@ -22,16 +22,9 @@ function Metronome({ iconSize }) {
     const [modalVisible, setModalVisible] = useState(false);
     const onMinusRef = useRef(null);
     const onPlusRef = useRef(null);
-    const { BPM, updateBPM, metronome, metronomeOn, updateMetronomeOn } =
+    const { BPM, updateBPM, metronome, metronomeOn, updateMetronomeOn, startMetronome, endMetronome } =
         useContext(SoundsContext);
 
-    let sound = new Audio.Sound();
-    // Load sounds
-    async function loadSound() {
-        await sound.loadAsync(require("../../sounds/metronome/metronome.mp3"));
-    }
-
-    loadSound();
 
     // Minus button functionality
     const onMinusIn = () => {
@@ -64,16 +57,13 @@ function Metronome({ iconSize }) {
     // Start metronome functionality
     const onBegin = () => {
         updateMetronomeOn(true);
-        const intervalInMilliSeconds = (60 / BPM) * 1000;
-        metronome.current = setInterval(async () => {
-            await sound.replayAsync();
-        }, intervalInMilliSeconds);
+        startMetronome();
     };
 
     // End metronome functionality
     const onEnd = () => {
-        clearInterval(metronome.current);
         updateMetronomeOn(false);
+        endMetronome();
     };
 
     // Handling BPM values
