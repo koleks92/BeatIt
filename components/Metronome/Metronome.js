@@ -150,9 +150,17 @@ function Metronome({ iconSize }) {
             <View>
                 <Pressable onPress={openModal}>
                     <Image
-                        source={require("../../assets/icons/metronome.png")}
+                        source={
+                            metronomeOn
+                                ? require("../../assets/icons/metronomeOn.png")
+                                : require("../../assets/icons/metronome.png")
+                        }
                         resizeMode="contain"
-                        style={{ height: iconSize }}
+                        style={
+                            metronomeOn
+                                ? { height: iconSize }
+                                : { height: iconSize + 0.1 }
+                        }
                     />
                 </Pressable>
             </View>
