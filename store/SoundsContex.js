@@ -32,7 +32,6 @@ async function loadPadsFiles() {
         await padsFiles[12].loadAsync(require("../sounds/pads/voice_1.mp3"));
         await padsFiles[13].loadAsync(require("../sounds/pads/voice_2.mp3"));
         await padsFiles[14].loadAsync(require("../sounds/pads/voice_3.mp3"));
-        console.log("Sucessfull pads sounds loading!");
     } catch (error) {
         console.error("Error loading", error);
     }
@@ -52,12 +51,24 @@ async function loadPianoFiles() {
         await pianoFiles[9].loadAsync(require("../sounds/piano/A.mp3"));
         await pianoFiles[10].loadAsync(require("../sounds/piano/As.mp3"));
         await pianoFiles[11].loadAsync(require("../sounds/piano/B.mp3"));
-        console.log("Sucessfull piano sounds loading!");
     } catch (error) {
         console.error("Error loading", error);
     }
 }
 
+let metronomeSound = new Audio.Sound();
+// Load sounds
+async function loadMetronomeSound() {
+    try {
+        await metronomeSound.loadAsync(
+            require("../sounds/metronome/metronome.mp3")
+        );
+    } catch (error) {
+        console.log("Error loading", error);
+    }
+}
+
+loadMetronomeSound();
 loadPadsFiles();
 loadPianoFiles();
 
@@ -68,9 +79,9 @@ function SoundsContextProvider({ children }) {
 
     const updateMetronomeOn = (bool) => {
         if (bool === true) {
-          setMetronomeOn(true);
+            setMetronomeOn(true);
         } else {
-          setMetronomeOn(false);
+            setMetronomeOn(false);
         }
     };
 
@@ -78,9 +89,31 @@ function SoundsContextProvider({ children }) {
         setBPM(newBPM);
     };
 
+    const startMetronome = () => {
+        const intervalInMilliSeconds = (60 / BPM) * 1000;
+        metronome.current = setInterval(async () => {
+            await metronomeSound.replayAsync();
+        }, intervalInMilliSeconds);
+    };
+
+    const endMetronome = () => {
+        clearInterval(metronome.current);
+        updateMetronomeOn(false);
+    };
+
     return (
         <SoundsContext.Provider
-            value={{ pianoFiles, padsFiles, BPM, updateBPM, metronomeOn, updateMetronomeOn, metronome }}
+            value={{
+                pianoFiles,
+                padsFiles,
+                BPM,
+                updateBPM,
+                metronomeOn,
+                updateMetronomeOn,
+                metronome,
+                startMetronome,
+                endMetronome
+            }}
         >
             {children}
         </SoundsContext.Provider>
