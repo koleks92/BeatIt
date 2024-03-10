@@ -210,4 +210,5 @@ const styles = StyleSheet.create({
     iconContainer: {
         flex: 1
     }
+
 });

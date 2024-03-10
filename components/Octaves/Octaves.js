@@ -9,16 +9,15 @@ import {
     Image,
 } from "react-native";
 import { Colors } from "../../constants/colors";
+import ButtonClose from "../UI/ButtonClose";
+
 
 const scrW = Dimensions.get("window").width
 const scrH = Dimensions.get("window").height;
 
 
-function Octaves() {
+function Octaves({iconSize}) {
     const [modalVisible, setModalVisible] = useState(false);
-
-    const iconSize = scrH * 0.04;
-
 
     // Modal functionality
     const openModal = () => {
@@ -40,10 +39,13 @@ function Octaves() {
                 <View style={styles.modalContainer}>
                     <View style={styles.octavesContainer}>
                         <Text> Octaves </Text>
+                        <View style={styles.buttons}>
+                            <ButtonClose onPress={closeModal} />
+                        </View>
                     </View>
                 </View>
             </Modal>
-            <View>
+            <View style={styles.iconContainer}>
                 <Pressable onPress={openModal}>
                     <Image
                         source={require("../../assets/icons/octaves.png")}
@@ -81,4 +83,15 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
     },
+    buttons: {
+        flexDirection: "row",
+        flex: 1,
+    },
+    iconContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignContent: 'center',
+        alignItems: 'center'
+    }
+
 });

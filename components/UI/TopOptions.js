@@ -11,7 +11,6 @@ function TopOptions({children}) {
     return (
         <View style={styles.root} >
             {children}
-            <Metronome iconSize={iconSize}/>
         </View>
     );
 };
@@ -20,8 +19,7 @@ export default TopOptions;
 
 const styles = StyleSheet.create({
     root: {
-        flex: 1,
-        flexDirection: "row",
+        flexDirection: 'row',
         justifyContent: 'space-evenly',
         marginTop: scrH * 0.01,
         marginHorizontal: "10%",
