@@ -17,7 +17,9 @@ const scrH = Dimensions.get("window").height;
 function Tabs() {
     return (
         <Tab.Navigator
+        
             screenOptions={({ route }) => ({
+                lazy: false, 
                 tabBarIcon: ({ focused, color }) => {
                     let iconName;
                     if (route.name === "PADS") {
