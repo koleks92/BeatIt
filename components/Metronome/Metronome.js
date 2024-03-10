@@ -136,7 +136,7 @@ function Metronome({ iconSize }) {
                     </View>
                 </View>
             </Modal>
-            <View>
+            <View style={styles.iconContainer}>
                 <Pressable onPress={openModal}>
                     <Image
                         source={
@@ -207,4 +207,7 @@ const styles = StyleSheet.create({
     buttonView: {
         flex: 1,
     },
+    iconContainer: {
+        flex: 1
+    }
 });
