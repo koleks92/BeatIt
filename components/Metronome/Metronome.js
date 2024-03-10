@@ -9,7 +9,6 @@ import {
     Image,
 } from "react-native";
 import { Colors } from "../../constants/colors";
-import { Audio } from "expo-av";
 import ButtonPM from "../UI/ButtonPM";
 import ButtonSS from "../UI/ButtonSS";
 import ButtonClose from "../UI/ButtonClose";
