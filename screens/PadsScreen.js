@@ -6,10 +6,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Pads from "../components/Pads/Pads";
 import { useContext } from "react";
 import { SoundsContext } from "../store/SoundsContex";
-import Metronome from "../components/Metronome/Metronome";
 import TopOptions from "../components/UI/TopOptions";
 
-function PadsScreen({ route }) {
+function PadsScreen() {
     const insets = useSafeAreaInsets();
     const { padsFiles } = useContext(SoundsContext);
 
