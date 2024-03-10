@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { SoundsContext } from "../store/SoundsContex";
 import Metronome from "../components/Metronome/Metronome";
 import TopOptions from "../components/UI/TopOptions";
+import Octaves from "../components/Octaves/Octaves";
 
 function PianoScreen() {
     const insets = useSafeAreaInsets();
@@ -26,6 +27,7 @@ function PianoScreen() {
                 }}
             >
                 <TopOptions>
+                    <Octaves/>
                 </TopOptions>
                 <Piano sounds={pianoFiles} />
             </View>
