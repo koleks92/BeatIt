@@ -6,7 +6,7 @@ const scrH = Dimensions.get("window").height;
 
 function TopOptions({children}) {
 
-    const iconSize = scrH * 0.05;
+    const iconSize = scrH * 0.04;
 
     return (
         <View style={styles.root} >
