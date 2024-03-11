@@ -15,15 +15,20 @@ import ButtonClose from "../UI/ButtonClose";
 import { SoundsContext } from "../../store/SoundsContex";
 
 const scrW = Dimensions.get("window").width;
-const scrH = Dimensions.get("window").height;
 
 function Metronome({ iconSize }) {
     const [modalVisible, setModalVisible] = useState(false);
     const onMinusRef = useRef(null);
     const onPlusRef = useRef(null);
-    const { BPM, updateBPM, metronome, metronomeOn, updateMetronomeOn, startMetronome, endMetronome } =
-        useContext(SoundsContext);
-
+    const {
+        BPM,
+        updateBPM,
+        metronome,
+        metronomeOn,
+        updateMetronomeOn,
+        startMetronome,
+        endMetronome,
+    } = useContext(SoundsContext);
 
     // Minus button functionality
     const onMinusIn = () => {
@@ -209,9 +214,8 @@ const styles = StyleSheet.create({
     },
     iconContainer: {
         flex: 1,
-        justifyContent: 'center',
-        alignContent: 'center',
-        alignItems: 'center',
-    }
-
+        justifyContent: "center",
+        alignContent: "center",
+        alignItems: "center",
+    },
 });
