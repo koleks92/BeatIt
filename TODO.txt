@@ -12,6 +12,6 @@
     - Top Options Styling !
 Piano:
     - Landscape mode ? so far its fake, try to make it more resonable
-    - Changing octaves - missing sounds, 
+    - Changing octaves - missing sounds, double loading !
 Metronome:
     - Distance between sounds not even
