@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
     View,
     Text,
@@ -10,14 +10,14 @@ import {
 } from "react-native";
 import { Colors } from "../../constants/colors";
 import ButtonClose from "../UI/ButtonClose";
+import ButtonSS from "../UI/ButtonSS";
+import { SoundsContext } from "../../store/SoundsContex";
 
+const scrW = Dimensions.get("window").width;
 
-const scrW = Dimensions.get("window").width
-const scrH = Dimensions.get("window").height;
-
-
-function Octaves({iconSize}) {
+function Octaves({ iconSize }) {
     const [modalVisible, setModalVisible] = useState(false);
+    const { octaves, updateOctaves } = useContext(SoundsContext);
 
     // Modal functionality
     const openModal = () => {
@@ -26,6 +26,20 @@ function Octaves({iconSize}) {
 
     const closeModal = () => {
         setModalVisible(false);
+    };
+
+    const onMinus = () => {
+        if (octaves === 1) {
+        } else {
+            updateOctaves((prevOctaves) => prevOctaves - 1);
+        }
+    };
+
+    const onPlus = () => {
+        if (octaves === 7) {
+        } else {
+            updateOctaves((prevOctaves) => prevOctaves + 1);
+        }
     };
 
     return (
@@ -38,7 +52,16 @@ function Octaves({iconSize}) {
             >
                 <View style={styles.modalContainer}>
                     <View style={styles.octavesContainer}>
-                        <Text> Octaves </Text>
+                        <Text style={styles.title}>Octaves</Text>
+                        <View style={styles.buttons}>
+                            <ButtonSS onPress={onMinus}>-</ButtonSS>
+
+                            <View style={styles.octavesView}>
+                                <Text style={styles.text}>{octaves}</Text>
+                            </View>
+                            <ButtonSS onPress={onPlus}>+</ButtonSS>
+                        </View>
+
                         <View style={styles.buttons}>
                             <ButtonClose onPress={closeModal} />
                         </View>
@@ -68,7 +91,7 @@ const styles = StyleSheet.create({
     },
     octavesContainer: {
         marginHorizontal: scrW * 0.1,
-        marginVertical: scrW * 0.6,
+        marginVertical: scrW * 0.7,
         backgroundColor: Colors.bar,
         color: "white",
         borderRadius: 20,
@@ -83,16 +106,28 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
     },
+    title: {
+        color: Colors.text2,
+        fontSize: scrW * 0.07,
+    },
+    text: {
+        color: Colors.text2,
+        fontSize: scrW * 0.06,
+    },
+    octavesView: {
+        justifyContent: "center",
+        alignItems: "center",
+        margin: scrW * 0.05,
+        width: scrW * 0.12,
+    },
     buttons: {
         flexDirection: "row",
         flex: 1,
     },
     iconContainer: {
         flex: 1,
-        justifyContent: 'center',
-        alignContent: 'center',
-        alignItems: 'center',
-
-    }
-
+        justifyContent: "center",
+        alignContent: "center",
+        alignItems: "center",
+    },
 });

@@ -76,6 +76,11 @@ function SoundsContextProvider({ children }) {
     const [BPM, setBPM] = useState(120);
     const metronome = useRef(null);
     const [metronomeOn, setMetronomeOn] = useState(false);
+    const [octaves, setOctaves] = useState(3);
+
+    const updateOctaves = (octave) => {
+        setOctaves(octave);
+    }
 
     const updateMetronomeOn = (bool) => {
         if (bool === true) {
@@ -112,7 +117,9 @@ function SoundsContextProvider({ children }) {
                 updateMetronomeOn,
                 metronome,
                 startMetronome,
-                endMetronome
+                endMetronome,
+                octaves,
+                updateOctaves
             }}
         >
             {children}
