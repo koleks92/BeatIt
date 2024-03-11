@@ -4,14 +4,12 @@
 - Sounds:
     - Too late sounds ( check if have to cut or its just the test lag)
 
-
 - General:
     - Loading ( loading app screen when linear gradient, etc.)
     - Loading sounds before app is ready !!!! (now using timeout)
     - Create on multitouch component for both Pads and Piano ( cant figure out how to pass isPressed for styling )
-    - Top Options Styling !
 Piano:
     - Landscape mode ? so far its fake, try to make it more resonable
-    - Changing octaves - missing sounds, double loading !
+    - Changing octaves - missing sounds
 Metronome:
     - Distance between sounds not even
