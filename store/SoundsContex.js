@@ -1,4 +1,4 @@
-import { createContext, useState, useRef } from "react";
+import { createContext, useState, useRef, useLayoutEffect } from "react";
 import { Audio } from "expo-av";
 
 export const SoundsContext = createContext();
@@ -38,7 +38,6 @@ async function loadPadsFiles() {
 }
 
 async function loadPianoFiles(o) {
-    console.log("Loading!");
     // Missing sounds !
     switch (o) {
         case 1:
@@ -255,7 +254,6 @@ async function loadPianoFiles(o) {
 }
 
 async function unloadPianoFiles() {
-    console.log("Unloading!");
     try {
         await pianoFiles[0].unloadAsync();
         await pianoFiles[1].unloadAsync();
@@ -270,8 +268,8 @@ async function unloadPianoFiles() {
         await pianoFiles[10].unloadAsync();
         await pianoFiles[11].unloadAsync();
     } catch (error) {
-        console.error("Error loading", error);
-    }
+        console.error("Error unloading", error);
+    } 
 }
 
 let metronomeSound = new Audio.Sound();
@@ -292,9 +290,16 @@ function SoundsContextProvider({ children }) {
     const [metronomeOn, setMetronomeOn] = useState(false);
     const [octaves, setOctaves] = useState(3);
 
-    loadMetronomeSound();
-    loadPadsFiles();
-    loadPianoFiles(octaves);
+    const firstLoad = async () => {
+        await loadMetronomeSound();
+        await loadPadsFiles();
+        await loadPianoFiles(octaves);
+    };
+
+    useLayoutEffect(() => {
+        firstLoad(); // Call the firstLoad function
+    }, []);
+    
 
     const updateOctaves = async (octave) => {
         setOctaves(octave);
@@ -340,6 +345,7 @@ function SoundsContextProvider({ children }) {
                 endMetronome,
                 octaves,
                 updateOctaves,
+                firstLoad,
             }}
         >
             {children}

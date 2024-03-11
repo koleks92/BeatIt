@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Image, Dimensions, View } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
+import { StyleSheet, Image, Dimensions } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
 import * as SplashScreen from "expo-splash-screen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
@@ -8,13 +8,15 @@ import PadsScreen from "./screens/PadsScreen";
 import PianoScreen from "./screens/PianoScreen";
 import { Colors } from "./constants/colors";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import SoundsContextProvider from "./store/SoundsContex";
+import SoundsContextProvider, { SoundsContext } from "./store/SoundsContex";
 
 const Tab = createBottomTabNavigator();
 const scrW = Dimensions.get("window").width;
 const scrH = Dimensions.get("window").height;
 
+
 function Tabs() {
+
     return (
         <Tab.Navigator
         

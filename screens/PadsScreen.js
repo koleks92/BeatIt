@@ -13,7 +13,8 @@ const scrH = Dimensions.get("window").height;
 
 function PadsScreen() {
     const insets = useSafeAreaInsets();
-    const { padsFiles } = useContext(SoundsContext);
+    const { padsFiles, firstLoad } = useContext(SoundsContext);
+
 
     const iconSize = scrH * 0.04;
 
