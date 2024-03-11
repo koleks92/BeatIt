@@ -37,20 +37,238 @@ async function loadPadsFiles() {
     }
 }
 
-async function loadPianoFiles() {
+async function loadPianoFiles(o) {
+    console.log("Loading!");
+    // Missing sounds !
+    switch (o) {
+        case 1:
+            try {
+                await pianoFiles[0].loadAsync(require("../sounds/piano/C.mp3"));
+                await pianoFiles[1].loadAsync(
+                    require("../sounds/piano/Cs.mp3")
+                );
+                await pianoFiles[2].loadAsync(require("../sounds/piano/D.mp3"));
+                await pianoFiles[3].loadAsync(
+                    require("../sounds/piano/Ds.mp3")
+                );
+                await pianoFiles[4].loadAsync(require("../sounds/piano/E.mp3"));
+                await pianoFiles[5].loadAsync(require("../sounds/piano/F.mp3"));
+                await pianoFiles[6].loadAsync(
+                    require("../sounds/piano/Fs.mp3")
+                );
+                await pianoFiles[7].loadAsync(require("../sounds/piano/G.mp3"));
+                await pianoFiles[8].loadAsync(
+                    require("../sounds/piano/Gs.mp3")
+                );
+                await pianoFiles[9].loadAsync(require("../sounds/piano/A.mp3"));
+                await pianoFiles[10].loadAsync(
+                    require("../sounds/piano/As.mp3")
+                );
+                await pianoFiles[11].loadAsync(
+                    require("../sounds/piano/B.mp3")
+                );
+            } catch (error) {
+                console.error("Error loading", error);
+            }
+            break;
+        case 2:
+            try {
+                await pianoFiles[0].loadAsync(require("../sounds/piano/C.mp3"));
+                await pianoFiles[1].loadAsync(
+                    require("../sounds/piano/Cs.mp3")
+                );
+                await pianoFiles[2].loadAsync(require("../sounds/piano/D.mp3"));
+                await pianoFiles[3].loadAsync(
+                    require("../sounds/piano/Ds.mp3")
+                );
+                await pianoFiles[4].loadAsync(require("../sounds/piano/E.mp3"));
+                await pianoFiles[5].loadAsync(require("../sounds/piano/F.mp3"));
+                await pianoFiles[6].loadAsync(
+                    require("../sounds/piano/Fs.mp3")
+                );
+                await pianoFiles[7].loadAsync(require("../sounds/piano/G.mp3"));
+                await pianoFiles[8].loadAsync(
+                    require("../sounds/piano/Gs.mp3")
+                );
+                await pianoFiles[9].loadAsync(require("../sounds/piano/A.mp3"));
+                await pianoFiles[10].loadAsync(
+                    require("../sounds/piano/As.mp3")
+                );
+                await pianoFiles[11].loadAsync(
+                    require("../sounds/piano/B.mp3")
+                );
+            } catch (error) {
+                console.error("Error loading", error);
+            }
+            break;
+        case 3:
+            try {
+                await pianoFiles[0].loadAsync(require("../sounds/piano/C.mp3"));
+                await pianoFiles[1].loadAsync(
+                    require("../sounds/piano/Cs.mp3")
+                );
+                await pianoFiles[2].loadAsync(require("../sounds/piano/D.mp3"));
+                await pianoFiles[3].loadAsync(
+                    require("../sounds/piano/Ds.mp3")
+                );
+                await pianoFiles[4].loadAsync(require("../sounds/piano/E.mp3"));
+                await pianoFiles[5].loadAsync(require("../sounds/piano/F.mp3"));
+                await pianoFiles[6].loadAsync(
+                    require("../sounds/piano/Fs.mp3")
+                );
+                await pianoFiles[7].loadAsync(require("../sounds/piano/G.mp3"));
+                await pianoFiles[8].loadAsync(
+                    require("../sounds/piano/Gs.mp3")
+                );
+                await pianoFiles[9].loadAsync(require("../sounds/piano/A.mp3"));
+                await pianoFiles[10].loadAsync(
+                    require("../sounds/piano/As.mp3")
+                );
+                await pianoFiles[11].loadAsync(
+                    require("../sounds/piano/B.mp3")
+                );
+            } catch (error) {
+                console.error("Error loading", error);
+            }
+            break;
+        case 4:
+            try {
+                await pianoFiles[0].loadAsync(require("../sounds/piano/C.mp3"));
+                await pianoFiles[1].loadAsync(
+                    require("../sounds/piano/Cs.mp3")
+                );
+                await pianoFiles[2].loadAsync(require("../sounds/piano/D.mp3"));
+                await pianoFiles[3].loadAsync(
+                    require("../sounds/piano/Ds.mp3")
+                );
+                await pianoFiles[4].loadAsync(require("../sounds/piano/E.mp3"));
+                await pianoFiles[5].loadAsync(require("../sounds/piano/F.mp3"));
+                await pianoFiles[6].loadAsync(
+                    require("../sounds/piano/Fs.mp3")
+                );
+                await pianoFiles[7].loadAsync(require("../sounds/piano/G.mp3"));
+                await pianoFiles[8].loadAsync(
+                    require("../sounds/piano/Gs.mp3")
+                );
+                await pianoFiles[9].loadAsync(require("../sounds/piano/A.mp3"));
+                await pianoFiles[10].loadAsync(
+                    require("../sounds/piano/As.mp3")
+                );
+                await pianoFiles[11].loadAsync(
+                    require("../sounds/piano/B.mp3")
+                );
+            } catch (error) {
+                console.error("Error loading", error);
+            }
+            break;
+        case 5:
+            try {
+                await pianoFiles[0].loadAsync(require("../sounds/piano/C.mp3"));
+                await pianoFiles[1].loadAsync(
+                    require("../sounds/piano/Cs.mp3")
+                );
+                await pianoFiles[2].loadAsync(require("../sounds/piano/D.mp3"));
+                await pianoFiles[3].loadAsync(
+                    require("../sounds/piano/Ds.mp3")
+                );
+                await pianoFiles[4].loadAsync(require("../sounds/piano/E.mp3"));
+                await pianoFiles[5].loadAsync(require("../sounds/piano/F.mp3"));
+                await pianoFiles[6].loadAsync(
+                    require("../sounds/piano/Fs.mp3")
+                );
+                await pianoFiles[7].loadAsync(require("../sounds/piano/G.mp3"));
+                await pianoFiles[8].loadAsync(
+                    require("../sounds/piano/Gs.mp3")
+                );
+                await pianoFiles[9].loadAsync(require("../sounds/piano/A.mp3"));
+                await pianoFiles[10].loadAsync(
+                    require("../sounds/piano/As.mp3")
+                );
+                await pianoFiles[11].loadAsync(
+                    require("../sounds/piano/B.mp3")
+                );
+            } catch (error) {
+                console.error("Error loading", error);
+            }
+            break;
+        case 6:
+            try {
+                await pianoFiles[0].loadAsync(require("../sounds/piano/C.mp3"));
+                await pianoFiles[1].loadAsync(
+                    require("../sounds/piano/Cs.mp3")
+                );
+                await pianoFiles[2].loadAsync(require("../sounds/piano/D.mp3"));
+                await pianoFiles[3].loadAsync(
+                    require("../sounds/piano/Ds.mp3")
+                );
+                await pianoFiles[4].loadAsync(require("../sounds/piano/E.mp3"));
+                await pianoFiles[5].loadAsync(require("../sounds/piano/F.mp3"));
+                await pianoFiles[6].loadAsync(
+                    require("../sounds/piano/Fs.mp3")
+                );
+                await pianoFiles[7].loadAsync(require("../sounds/piano/G.mp3"));
+                await pianoFiles[8].loadAsync(
+                    require("../sounds/piano/Gs.mp3")
+                );
+                await pianoFiles[9].loadAsync(require("../sounds/piano/A.mp3"));
+                await pianoFiles[10].loadAsync(
+                    require("../sounds/piano/As.mp3")
+                );
+                await pianoFiles[11].loadAsync(
+                    require("../sounds/piano/B.mp3")
+                );
+            } catch (error) {
+                console.error("Error loading", error);
+            }
+            break;
+        case 7:
+            try {
+                await pianoFiles[0].loadAsync(require("../sounds/piano/C.mp3"));
+                await pianoFiles[1].loadAsync(
+                    require("../sounds/piano/Cs.mp3")
+                );
+                await pianoFiles[2].loadAsync(require("../sounds/piano/D.mp3"));
+                await pianoFiles[3].loadAsync(
+                    require("../sounds/piano/Ds.mp3")
+                );
+                await pianoFiles[4].loadAsync(require("../sounds/piano/E.mp3"));
+                await pianoFiles[5].loadAsync(require("../sounds/piano/F.mp3"));
+                await pianoFiles[6].loadAsync(
+                    require("../sounds/piano/Fs.mp3")
+                );
+                await pianoFiles[7].loadAsync(require("../sounds/piano/G.mp3"));
+                await pianoFiles[8].loadAsync(
+                    require("../sounds/piano/Gs.mp3")
+                );
+                await pianoFiles[9].loadAsync(require("../sounds/piano/A.mp3"));
+                await pianoFiles[10].loadAsync(
+                    require("../sounds/piano/As.mp3")
+                );
+                await pianoFiles[11].loadAsync(
+                    require("../sounds/piano/B.mp3")
+                );
+            } catch (error) {
+                console.error("Error loading", error);
+            }
+            break;
+    }
+}
+
+async function unloadPianoFiles() {
+    console.log("Unloading!");
     try {
-        await pianoFiles[0].loadAsync(require("../sounds/piano/C.mp3"));
-        await pianoFiles[1].loadAsync(require("../sounds/piano/Cs.mp3"));
-        await pianoFiles[2].loadAsync(require("../sounds/piano/D.mp3"));
-        await pianoFiles[3].loadAsync(require("../sounds/piano/Ds.mp3"));
-        await pianoFiles[4].loadAsync(require("../sounds/piano/E.mp3"));
-        await pianoFiles[5].loadAsync(require("../sounds/piano/F.mp3"));
-        await pianoFiles[6].loadAsync(require("../sounds/piano/Fs.mp3"));
-        await pianoFiles[7].loadAsync(require("../sounds/piano/G.mp3"));
-        await pianoFiles[8].loadAsync(require("../sounds/piano/Gs.mp3"));
-        await pianoFiles[9].loadAsync(require("../sounds/piano/A.mp3"));
-        await pianoFiles[10].loadAsync(require("../sounds/piano/As.mp3"));
-        await pianoFiles[11].loadAsync(require("../sounds/piano/B.mp3"));
+        await pianoFiles[0].unloadAsync();
+        await pianoFiles[1].unloadAsync();
+        await pianoFiles[2].unloadAsync();
+        await pianoFiles[3].unloadAsync();
+        await pianoFiles[4].unloadAsync();
+        await pianoFiles[5].unloadAsync();
+        await pianoFiles[6].unloadAsync();
+        await pianoFiles[7].unloadAsync();
+        await pianoFiles[8].unloadAsync();
+        await pianoFiles[9].unloadAsync();
+        await pianoFiles[10].unloadAsync();
+        await pianoFiles[11].unloadAsync();
     } catch (error) {
         console.error("Error loading", error);
     }
@@ -68,19 +286,21 @@ async function loadMetronomeSound() {
     }
 }
 
-loadMetronomeSound();
-loadPadsFiles();
-loadPianoFiles();
-
 function SoundsContextProvider({ children }) {
     const [BPM, setBPM] = useState(120);
     const metronome = useRef(null);
     const [metronomeOn, setMetronomeOn] = useState(false);
     const [octaves, setOctaves] = useState(3);
 
-    const updateOctaves = (octave) => {
+    loadMetronomeSound();
+    loadPadsFiles();
+    loadPianoFiles(octaves);
+
+    const updateOctaves = async (octave) => {
         setOctaves(octave);
-    }
+        await unloadPianoFiles();
+        await loadPianoFiles(octave);
+    };
 
     const updateMetronomeOn = (bool) => {
         if (bool === true) {
@@ -119,7 +339,7 @@ function SoundsContextProvider({ children }) {
                 startMetronome,
                 endMetronome,
                 octaves,
-                updateOctaves
+                updateOctaves,
             }}
         >
             {children}

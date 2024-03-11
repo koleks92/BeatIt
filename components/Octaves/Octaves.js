@@ -31,14 +31,14 @@ function Octaves({ iconSize }) {
     const onMinus = () => {
         if (octaves === 1) {
         } else {
-            updateOctaves((prevOctaves) => prevOctaves - 1);
+            updateOctaves(octaves - 1);
         }
     };
 
     const onPlus = () => {
         if (octaves === 7) {
         } else {
-            updateOctaves((prevOctaves) => prevOctaves + 1);
+            updateOctaves(octaves + 1);
         }
     };
 
