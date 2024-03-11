@@ -208,7 +208,10 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     iconContainer: {
-        flex: 1
+        flex: 1,
+        justifyContent: 'center',
+        alignContent: 'center',
+        alignItems: 'center',
     }
 
 });

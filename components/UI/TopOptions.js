@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         marginTop: scrH * 0.01,
-        marginHorizontal: "10%",
         maxHeight: scrH * 0.05
     }
 })
