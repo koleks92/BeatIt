@@ -141,23 +141,21 @@ function Metronome({ iconSize }) {
                     </View>
                 </View>
             </Modal>
-            <View style={styles.iconContainer}>
-                <Pressable onPress={openModal}>
-                    <Image
-                        source={
-                            metronomeOn
-                                ? require("../../assets/icons/metronomeOn.png")
-                                : require("../../assets/icons/metronome.png")
-                        }
-                        resizeMode="contain"
-                        style={
-                            metronomeOn
-                                ? { height: iconSize }
-                                : { height: iconSize + 0.1 }
-                        }
-                    />
-                </Pressable>
-            </View>
+            <Pressable onPress={openModal} style={styles.iconContainer}>
+                <Image
+                    source={
+                        metronomeOn
+                            ? require("../../assets/icons/metronomeOn.png")
+                            : require("../../assets/icons/metronome.png")
+                    }
+                    resizeMode="contain"
+                    style={
+                        metronomeOn
+                            ? { height: iconSize }
+                            : { height: iconSize + 0.1 }
+                    }
+                />
+            </Pressable>
         </>
     );
 }
