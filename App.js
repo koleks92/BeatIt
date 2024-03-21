@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import * as SplashScreen from "expo-splash-screen";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DarkTheme } from "@react-navigation/native";
 import PadsScreen from "./screens/PadsScreen";
 import PianoScreen from "./screens/PianoScreen";
 import PadsChangerScreen from "./screens/PadsChangerScreen";
@@ -102,18 +102,18 @@ export default function App() {
         <SoundsContextProvider>
             <StatusBar style="dark" />
             <SafeAreaProvider>
-                <NavigationContainer>
+                <NavigationContainer theme={DarkTheme}>
                     <Stack.Navigator>
                         <Stack.Screen
-                        name="Tabs"
-                        component={Tabs} 
-                        options={{ headerShown: false }}/>
+                            name="Tabs"
+                            component={Tabs}
+                            options={{ headerShown: false }}
+                        />
                         <Stack.Screen
                             name="PadsChangerScreen"
                             component={PadsChangerScreen}
                             options={{ headerShown: false }}
                         />
-                        
                     </Stack.Navigator>
                 </NavigationContainer>
             </SafeAreaProvider>
