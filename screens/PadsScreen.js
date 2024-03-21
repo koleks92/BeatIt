@@ -8,13 +8,13 @@ import { useContext } from "react";
 import { SoundsContext } from "../store/SoundsContex";
 import TopOptions from "../components/UI/TopOptions";
 import Metronome from "../components/Metronome/Metronome";
+import PadsChanger from "../components/UI/PadsChanger";
 
 const scrH = Dimensions.get("window").height;
 
 function PadsScreen() {
     const insets = useSafeAreaInsets();
     const { padsFiles, firstLoad } = useContext(SoundsContext);
-
 
     const iconSize = scrH * 0.04;
 
@@ -31,6 +31,7 @@ function PadsScreen() {
                 }}
             >
                 <TopOptions>
+                    <PadsChanger iconSize={iconSize} />
                     <Metronome iconSize={iconSize} />
                 </TopOptions>
                 <Pads sounds={padsFiles} />
