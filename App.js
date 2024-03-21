@@ -2,26 +2,26 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Image, Dimensions } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import * as SplashScreen from "expo-splash-screen";
+import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import PadsScreen from "./screens/PadsScreen";
 import PianoScreen from "./screens/PianoScreen";
+import PadsChangerScreen from "./screens/PadsChangerScreen";
 import { Colors } from "./constants/colors";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import SoundsContextProvider, { SoundsContext } from "./store/SoundsContex";
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 const scrW = Dimensions.get("window").width;
 const scrH = Dimensions.get("window").height;
 
-
 function Tabs() {
-
     return (
         <Tab.Navigator
-        
             screenOptions={({ route }) => ({
-                lazy: false, 
+                lazy: false,
                 tabBarIcon: ({ focused, color }) => {
                     let iconName;
                     if (route.name === "PADS") {
@@ -73,40 +73,51 @@ export default function App() {
     const [appIsReady, setAppIsReady] = useState(false);
 
     useEffect(() => {
-      async function prepare() {
-          try {
-              await new Promise((resolve) => setTimeout(resolve, 2000));
-          } catch (e) {
-              console.warn(e);
-          } finally {
-              setAppIsReady(true);
-          }
-      }
-      prepare();
-  }, []);
+        async function prepare() {
+            try {
+                await new Promise((resolve) => setTimeout(resolve, 2000));
+            } catch (e) {
+                console.warn(e);
+            } finally {
+                setAppIsReady(true);
+            }
+        }
+        prepare();
+    }, []);
 
-  useEffect(() => {
-      async function hideSplashScreen() {
-          if (appIsReady) {
-              await SplashScreen.hideAsync();
-          }
-      }
-      hideSplashScreen();
-  }, [appIsReady]);
+    useEffect(() => {
+        async function hideSplashScreen() {
+            if (appIsReady) {
+                await SplashScreen.hideAsync();
+            }
+        }
+        hideSplashScreen();
+    }, [appIsReady]);
 
-  if (!appIsReady) {
-      return null;
-  }
+    if (!appIsReady) {
+        return null;
+    }
 
     return (
-            <SoundsContextProvider>
-                <StatusBar style="dark" />
-                <SafeAreaProvider>
-                    <NavigationContainer>
-                        <Tabs />
-                    </NavigationContainer>
-                </SafeAreaProvider>
-            </SoundsContextProvider>
+        <SoundsContextProvider>
+            <StatusBar style="dark" />
+            <SafeAreaProvider>
+                <NavigationContainer>
+                    <Stack.Navigator>
+                        <Stack.Screen
+                        name="Tabs"
+                        component={Tabs} 
+                        options={{ headerShown: false }}/>
+                        <Stack.Screen
+                            name="PadsChangerScreen"
+                            component={PadsChangerScreen}
+                            options={{ headerShown: false }}
+                        />
+                        
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </SafeAreaProvider>
+        </SoundsContextProvider>
     );
 }
 
