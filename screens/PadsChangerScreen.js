@@ -42,7 +42,7 @@ function PadsChangerScreen() {
                 <TopOptions>
                     <GoBack iconSize={iconSize} onPress={onPress}/>
                 </TopOptions>
-                <Pads sounds={padsFiles} />
+                <Pads changer={true} sounds={padsFiles} />
             </View>
         </Background>
     );
