@@ -7,8 +7,11 @@
 - General:
     - Loading ( loading app screen when linear gradient, etc.)
     - Loading sounds before app is ready !!!! (now using timeout)
-    - Create on multitouch component for both Pads and Piano ( cant figure out how to pass isPressed for styling )
 Piano:
     - Landscape mode ? so far its fake, try to make it more resonable
 Metronome:
     - Distance between sounds not even
+
+PadsChanger:
+    - Finish soundcontext functions
+    - Finis PadsChanger functions
