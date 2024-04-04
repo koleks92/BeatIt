@@ -3,6 +3,9 @@ import Pad from "./Pad";
 import { useState } from "react";
 import ButtonClose from "../UI/ButtonClose";
 import { Colors } from "../../constants/colors";
+import ButtonRegular from "../UI/ButtonRegular";
+import * as DocumentPicker from "expo-document-picker";
+
 
 const scrW = Dimensions.get("window").width;
 
@@ -10,6 +13,7 @@ function Pads({ changer, sounds }) {
     const padsFiles = sounds;
     const [modalVisible, setModalVisible] = useState(false);
     const [padNumber, setPadNumber] = useState();
+    const [file, setFile] = useState();
 
     // Modal functionality
     const openModal = () => {
@@ -20,6 +24,7 @@ function Pads({ changer, sounds }) {
         setModalVisible(false);
     };
 
+    // Playing sounds functionality
     let onBegin = async (index) => {
         try {
             await padsFiles[index].replayAsync();
@@ -35,6 +40,7 @@ function Pads({ changer, sounds }) {
         }
     };
 
+    // If changer mode on
     if (changer) {
         onBegin = (index) => {
             openModal();
@@ -42,6 +48,21 @@ function Pads({ changer, sounds }) {
         };
         onEnd = (index) => {};
     }
+
+    const pickFile = async () => {
+        try {
+            const result = await DocumentPicker.getDocumentAsync({
+                type: "audio/*",
+            });
+            if (result.cancelled) {
+                console.log("Cancelled");
+            } else {
+                setFile(result.uri);
+            }
+        } catch (error) {
+            console.error("Error: ", error);
+        }
+    };
 
     return (
         <>
@@ -54,6 +75,10 @@ function Pads({ changer, sounds }) {
                 <View style={styles.modalContainer}>
                     <View style={styles.changerContainer}>
                         <Text style={styles.title}>Choose new sound</Text>
+                        <View><Text style={styles.text}>File name</Text></View>
+                        <View style={styles.buttons}>
+                            <ButtonRegular onPress={pickFile}>Pick</ButtonRegular>
+                        </View>
                         <View style={styles.buttons}>
                             <ButtonClose onPress={closeModal} />
                         </View>
@@ -238,5 +263,9 @@ const styles = StyleSheet.create({
     title: {
         color: Colors.text2,
         fontSize: scrW * 0.07,
+    },
+    text: {
+        color: Colors.text2,
+        fontSize: scrW * 0.06,
     },
 });
