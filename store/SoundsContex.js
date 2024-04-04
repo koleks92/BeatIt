@@ -337,6 +337,7 @@ async function loadPianoFiles(o) {
     }
 }
 
+// Unload files
 async function unloadPianoFiles() {
     try {
         await pianoFiles[0].unloadAsync();
@@ -354,6 +355,26 @@ async function unloadPianoFiles() {
     } catch (error) {
         console.error("Error unloading", error);
     }
+}
+
+async function unloadPadFile(padNumber) {
+    try {
+        await padsFiles[padNumber].unloadAsync();
+    } catch (error) {
+        console.error("Error unloading: ", error)
+    }
+}
+
+// Reset to defualt pad file
+async function loadDefault(padNumber) {
+    // LoadDeafult
+    console.log("Loading default")
+}
+
+// Load new pad file
+async function loadNewPadFile(padNumber) {
+    // Load new pad file sound
+    console.log("Loading new file sound")
 }
 
 let metronomeSound = new Audio.Sound();
@@ -384,12 +405,15 @@ function SoundsContextProvider({ children }) {
         firstLoad(); // Call the firstLoad function
     }, []);
 
+
+
     const updateOctaves = async (octave) => {
         setOctaves(octave);
         await unloadPianoFiles();
         await loadPianoFiles(octave);
     };
 
+    // Metronome
     const updateMetronomeOn = (bool) => {
         if (bool === true) {
             setMetronomeOn(true);
@@ -414,6 +438,16 @@ function SoundsContextProvider({ children }) {
         updateMetronomeOn(false);
     };
 
+    const changePad = async (padNumber) => {
+        await unloadPadFile(padNumber);
+        await loadPadFile(padNumber, fileName)
+    }
+
+    const resetPad = async (padNumber) => {
+        await unloadPadFile(padNumber);
+        await loadDefault(padNumber);
+    }
+
     return (
         <SoundsContext.Provider
             value={{
@@ -429,6 +463,8 @@ function SoundsContextProvider({ children }) {
                 octaves,
                 updateOctaves,
                 firstLoad,
+                changePad,
+                resetPad
             }}
         >
             {children}
