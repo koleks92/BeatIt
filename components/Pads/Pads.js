@@ -84,7 +84,7 @@ function Pads({ changer, sounds }) {
                         <View><Text style={styles.text}>File name</Text></View>
                         <View style={styles.buttons}>
                             <ButtonRegular onPress={pickFile}>Pick</ButtonRegular>
-                            <ButtonRegular onPress={pickFile}>Reset</ButtonRegular>
+                            <ButtonRegular onPress={resetFile}>Reset</ButtonRegular>
                         </View>
                         <View style={styles.buttons}>
                             <ButtonClose onPress={closeModal} />
