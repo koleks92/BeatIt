@@ -49,7 +49,8 @@ function Pads({ changer, sounds }) {
         onEnd = (index) => {};
     }
 
-    const pickFile = async () => {
+    // Change modal functions
+    const pickFile = async (padNumber) => {
         try {
             const result = await DocumentPicker.getDocumentAsync({
                 type: "audio/*",
@@ -63,6 +64,11 @@ function Pads({ changer, sounds }) {
             console.error("Error: ", error);
         }
     };
+
+    const resetFile = async (padNumber) => {
+        // Reset file functionality !
+        console.log('Reset');
+    }
 
     return (
         <>
@@ -78,6 +84,7 @@ function Pads({ changer, sounds }) {
                         <View><Text style={styles.text}>File name</Text></View>
                         <View style={styles.buttons}>
                             <ButtonRegular onPress={pickFile}>Pick</ButtonRegular>
+                            <ButtonRegular onPress={pickFile}>Reset</ButtonRegular>
                         </View>
                         <View style={styles.buttons}>
                             <ButtonClose onPress={closeModal} />
@@ -267,5 +274,9 @@ const styles = StyleSheet.create({
     text: {
         color: Colors.text2,
         fontSize: scrW * 0.06,
+    },
+    buttons: {
+        flexDirection: "row",
+        flex: 1,
     },
 });
