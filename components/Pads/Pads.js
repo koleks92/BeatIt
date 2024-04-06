@@ -1,11 +1,11 @@
 import { View, StyleSheet, Modal, Text, Dimensions } from "react-native";
 import Pad from "./Pad";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ButtonClose from "../UI/ButtonClose";
 import { Colors } from "../../constants/colors";
 import ButtonRegular from "../UI/ButtonRegular";
 import * as DocumentPicker from "expo-document-picker";
-
+import { SoundsContext } from "../../store/SoundsContex";
 
 const scrW = Dimensions.get("window").width;
 
@@ -13,7 +13,7 @@ function Pads({ changer, sounds }) {
     const padsFiles = sounds;
     const [modalVisible, setModalVisible] = useState(false);
     const [padNumber, setPadNumber] = useState();
-    const [file, setFile] = useState();
+    const { changePad, resetPad } = useContext(SoundsContext);
 
     // Modal functionality
     const openModal = () => {
@@ -43,14 +43,14 @@ function Pads({ changer, sounds }) {
     // If changer mode on
     if (changer) {
         onBegin = (index) => {
-            openModal();
             setPadNumber(index);
+            openModal();
         };
-        onEnd = (index) => {};
+        onEnd = () => {};
     }
 
     // Change modal functions
-    const pickFile = async (padNumber) => {
+    const pickFile = async () => {
         try {
             const result = await DocumentPicker.getDocumentAsync({
                 type: "audio/*",
@@ -58,17 +58,18 @@ function Pads({ changer, sounds }) {
             if (result.cancelled) {
                 console.log("Cancelled");
             } else {
-                setFile(result.uri);
+                const soundPath = result.assets[0].uri
+                changePad(padNumber, soundPath)
             }
         } catch (error) {
             console.error("Error: ", error);
         }
     };
 
-    const resetFile = async (padNumber) => {
+    const resetFile = async () => {
         // Reset file functionality !
-        console.log('Reset');
-    }
+        resetPad(padNumber);
+    };
 
     return (
         <>
@@ -81,10 +82,16 @@ function Pads({ changer, sounds }) {
                 <View style={styles.modalContainer}>
                     <View style={styles.changerContainer}>
                         <Text style={styles.title}>Choose new sound</Text>
-                        <View><Text style={styles.text}>File name</Text></View>
+                        <View>
+                            <Text style={styles.text}>File name</Text>
+                        </View>
                         <View style={styles.buttons}>
-                            <ButtonRegular onPress={pickFile}>Pick</ButtonRegular>
-                            <ButtonRegular onPress={resetFile}>Reset</ButtonRegular>
+                            <ButtonRegular onPress={pickFile}>
+                                Pick
+                            </ButtonRegular>
+                            <ButtonRegular onPress={resetFile}>
+                                Reset
+                            </ButtonRegular>
                         </View>
                         <View style={styles.buttons}>
                             <ButtonClose onPress={closeModal} />
