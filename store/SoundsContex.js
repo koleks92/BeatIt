@@ -17,28 +17,27 @@ const pianoFiles = Array.from(
 
 async function loadPadsFiles() {
     try {
-        await padsFiles[0].loadAsync(require("../sounds/pads/bass_1.mp3"));
-        await padsFiles[1].loadAsync(require("../sounds/pads/bass_2.mp3"));
-        await padsFiles[2].loadAsync(require("../sounds/pads/bass_3.mp3"));
-        await padsFiles[3].loadAsync(require("../sounds/pads/clap_1.mp3"));
-        await padsFiles[4].loadAsync(require("../sounds/pads/clap_2.mp3"));
-        await padsFiles[5].loadAsync(require("../sounds/pads/clap_3.mp3"));
-        await padsFiles[6].loadAsync(require("../sounds/pads/hihat_1.mp3"));
-        await padsFiles[7].loadAsync(require("../sounds/pads/hihat_2.mp3"));
-        await padsFiles[8].loadAsync(require("../sounds/pads/hihat_3.mp3"));
-        await padsFiles[9].loadAsync(require("../sounds/pads/kick_1.mp3"));
-        await padsFiles[10].loadAsync(require("../sounds/pads/kick_2.mp3"));
-        await padsFiles[11].loadAsync(require("../sounds/pads/kick_3.mp3"));
-        await padsFiles[12].loadAsync(require("../sounds/pads/voice_1.mp3"));
-        await padsFiles[13].loadAsync(require("../sounds/pads/voice_2.mp3"));
-        await padsFiles[14].loadAsync(require("../sounds/pads/voice_3.mp3"));
+        await padsFiles[0].loadAsync(require("../sounds/pads/0.mp3"));
+        await padsFiles[1].loadAsync(require("../sounds/pads/1.mp3"));
+        await padsFiles[2].loadAsync(require("../sounds/pads/2.mp3"));
+        await padsFiles[3].loadAsync(require("../sounds/pads/3.mp3"));
+        await padsFiles[4].loadAsync(require("../sounds/pads/4.mp3"));
+        await padsFiles[5].loadAsync(require("../sounds/pads/5.mp3"));
+        await padsFiles[6].loadAsync(require("../sounds/pads/6.mp3"));
+        await padsFiles[7].loadAsync(require("../sounds/pads/7.mp3"));
+        await padsFiles[8].loadAsync(require("../sounds/pads/8.mp3"));
+        await padsFiles[9].loadAsync(require("../sounds/pads/9.mp3"));
+        await padsFiles[10].loadAsync(require("../sounds/pads/10.mp3"));
+        await padsFiles[11].loadAsync(require("../sounds/pads/11.mp3"));
+        await padsFiles[12].loadAsync(require("../sounds/pads/12.mp3"));
+        await padsFiles[13].loadAsync(require("../sounds/pads/13.mp3"));
+        await padsFiles[14].loadAsync(require("../sounds/pads/14.mp3"));
     } catch (error) {
         console.error("Error loading", error);
     }
 }
 
 async function loadPianoFiles(o) {
-    // Missing sounds !
     switch (o) {
         case 1:
             try {
