@@ -14,6 +14,7 @@ function Pads({ changer, sounds }) {
     const [modalVisible, setModalVisible] = useState(false);
     const [padNumber, setPadNumber] = useState();
     const { changePad, resetPad } = useContext(SoundsContext);
+    const [ fileName, setFileName ] = useState("Default");
 
     // Modal functionality
     const openModal = () => {
@@ -58,8 +59,9 @@ function Pads({ changer, sounds }) {
             if (result.cancelled) {
                 console.log("Cancelled");
             } else {
-                const soundPath = result.assets[0].uri
-                changePad(padNumber, soundPath)
+                setFileName((result.assets[0].name));
+                const soundPath = result.assets[0].uri;
+                changePad(padNumber, soundPath);
             }
         } catch (error) {
             console.error("Error: ", error);
@@ -83,7 +85,7 @@ function Pads({ changer, sounds }) {
                     <View style={styles.changerContainer}>
                         <Text style={styles.title}>Choose new sound</Text>
                         <View>
-                            <Text style={styles.text}>File name</Text>
+                            <Text style={styles.text}>{fileName}</Text>
                         </View>
                         <View style={styles.buttons}>
                             <ButtonRegular onPress={pickFile}>
@@ -280,7 +282,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: Colors.text2,
-        fontSize: scrW * 0.06,
+        fontSize: scrW * 0.05,
     },
     buttons: {
         flexDirection: "row",
