@@ -367,19 +367,21 @@ async function unloadPadFile(padNumber) {
 // Reset to defualt pad file
 async function loadDefault(padNumber) {
     try {
-        const path = `require("../sounds/pads/${padNumber}.mp3")`
-        await padsFiles[0].loadAsync(path);
+        const path = `require("../sounds/pads/${padNumber}.mp3")`;
+        await padsFiles[padNumber].loadAsync(path);
     } catch (error) {
         console.error("Error loading: ", error)
     }
-
-
 }
 
 // Load new pad file
-async function loadNewPadFile(padNumber) {
-    // Load new pad file sound
-    console.log("Loading new file sound")
+async function loadNewPadFile(padNumber, soundPath) {
+    try {
+        const path = `require("${soundPath}")`;
+        await padsFiles[padNumber].loadAsync(path);
+    } catch (error) {
+        console.error("Error loading: ", error)
+    }
 }
 
 let metronomeSound = new Audio.Sound();
@@ -445,7 +447,7 @@ function SoundsContextProvider({ children }) {
 
     const changePad = async (padNumber) => {
         await unloadPadFile(padNumber);
-        await loadPadFile(padNumber, fileName)
+        await loadNewPadFile(padNumber)
     }
 
     const resetPad = async (padNumber) => {
