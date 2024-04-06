@@ -429,9 +429,9 @@ function SoundsContextProvider({ children }) {
     }, []);
 
     const updateOctaves = async (octave) => {
-        setOctaves(octave);
         await unloadPianoFiles();
         await loadPianoFiles(octave);
+        setOctaves(octave);
     };
 
     // Metronome
