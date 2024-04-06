@@ -12,6 +12,3 @@ Piano:
 Metronome:
     - Distance between sounds not even
 
-PadsChanger:
-    - Finish soundcontext functions
-    - Finis PadsChanger functions
