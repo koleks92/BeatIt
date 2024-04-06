@@ -366,8 +366,14 @@ async function unloadPadFile(padNumber) {
 
 // Reset to defualt pad file
 async function loadDefault(padNumber) {
-    // LoadDeafult
-    console.log("Loading default")
+    try {
+        const path = `require("../sounds/pads/${padNumber}.mp3")`
+        await padsFiles[0].loadAsync(path);
+    } catch (error) {
+        console.error("Error loading: ", error)
+    }
+
+
 }
 
 // Load new pad file
