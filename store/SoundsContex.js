@@ -15,23 +15,47 @@ const pianoFiles = Array.from(
     (_, index) => new Audio.Sound()
 );
 
+// Default pad files paths !
+function padFileRequires(padNumber) {
+    switch (padNumber) {
+        case 0: // Bass
+            return require("../sounds/pads/0.mp3");
+        case 1: 
+            return require("../sounds/pads/1.mp3");
+        case 2: 
+            return require("../sounds/pads/2.mp3");
+        case 3: // Clap
+            return require("../sounds/pads/3.mp3");
+        case 4:
+            return require("../sounds/pads/4.mp3");
+        case 5:
+            return require("../sounds/pads/5.mp3");
+        case 6: // Hihat
+            return require("../sounds/pads/6.mp3");
+        case 7:
+            return require("../sounds/pads/7.mp3");
+        case 8:
+            return require("../sounds/pads/8.mp3");
+        case 9: // Kick
+            return require("../sounds/pads/9.mp3");
+        case 10:
+            return require("../sounds/pads/10.mp3");
+        case 11:
+            return require("../sounds/pads/11.mp3");
+        case 12: // Voice
+            return require("../sounds/pads/12.mp3");
+        case 13:
+            return require("../sounds/pads/13.mp3");
+        case 14:
+            return require("../sounds/pads/14.mp3");
+    }
+}
+
 async function loadPadsFiles() {
     try {
-        await padsFiles[0].loadAsync(require("../sounds/pads/0.mp3"));
-        await padsFiles[1].loadAsync(require("../sounds/pads/1.mp3"));
-        await padsFiles[2].loadAsync(require("../sounds/pads/2.mp3"));
-        await padsFiles[3].loadAsync(require("../sounds/pads/3.mp3"));
-        await padsFiles[4].loadAsync(require("../sounds/pads/4.mp3"));
-        await padsFiles[5].loadAsync(require("../sounds/pads/5.mp3"));
-        await padsFiles[6].loadAsync(require("../sounds/pads/6.mp3"));
-        await padsFiles[7].loadAsync(require("../sounds/pads/7.mp3"));
-        await padsFiles[8].loadAsync(require("../sounds/pads/8.mp3"));
-        await padsFiles[9].loadAsync(require("../sounds/pads/9.mp3"));
-        await padsFiles[10].loadAsync(require("../sounds/pads/10.mp3"));
-        await padsFiles[11].loadAsync(require("../sounds/pads/11.mp3"));
-        await padsFiles[12].loadAsync(require("../sounds/pads/12.mp3"));
-        await padsFiles[13].loadAsync(require("../sounds/pads/13.mp3"));
-        await padsFiles[14].loadAsync(require("../sounds/pads/14.mp3"));
+        for (let i=0; i < padsFiles.length; i++) {
+            await padsFiles[i].loadAsync(padFileRequires(i));
+        }
     } catch (error) {
         console.error("Error loading", error);
     }
@@ -359,18 +383,19 @@ async function unloadPianoFiles() {
 async function unloadPadFile(padNumber) {
     try {
         await padsFiles[padNumber].unloadAsync();
+        console.log("Unloaded !");
     } catch (error) {
-        console.error("Error unloading: ", error)
+        console.error("Error unloading: ", error);
     }
 }
 
 // Reset to defualt pad file
 async function loadDefault(padNumber) {
     try {
-        const path = `require("../sounds/pads/${padNumber}.mp3")`;
-        await padsFiles[padNumber].loadAsync(path);
+        await padsFiles[padNumber].loadAsync(padFileRequires(padNumber));
+        console.log("Loaded !");
     } catch (error) {
-        console.error("Error loading: ", error)
+        console.error("Error loading: ", error);
     }
 }
 
@@ -380,7 +405,7 @@ async function loadNewPadFile(padNumber, soundPath) {
         const path = `require("${soundPath}")`;
         await padsFiles[padNumber].loadAsync(path);
     } catch (error) {
-        console.error("Error loading: ", error)
+        console.error("Error loading: ", error);
     }
 }
 
@@ -411,8 +436,6 @@ function SoundsContextProvider({ children }) {
     useLayoutEffect(() => {
         firstLoad(); // Call the firstLoad function
     }, []);
-
-
 
     const updateOctaves = async (octave) => {
         setOctaves(octave);
@@ -447,13 +470,13 @@ function SoundsContextProvider({ children }) {
 
     const changePad = async (padNumber) => {
         await unloadPadFile(padNumber);
-        await loadNewPadFile(padNumber)
-    }
+        await loadNewPadFile(padNumber);
+    };
 
     const resetPad = async (padNumber) => {
         await unloadPadFile(padNumber);
         await loadDefault(padNumber);
-    }
+    };
 
     return (
         <SoundsContext.Provider
@@ -471,7 +494,7 @@ function SoundsContextProvider({ children }) {
                 updateOctaves,
                 firstLoad,
                 changePad,
-                resetPad
+                resetPad,
             }}
         >
             {children}
