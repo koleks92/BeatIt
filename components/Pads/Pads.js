@@ -13,8 +13,7 @@ function Pads({ changer, sounds }) {
     const padsFiles = sounds;
     const [modalVisible, setModalVisible] = useState(false);
     const [padNumber, setPadNumber] = useState();
-    const { changePad, resetPad } = useContext(SoundsContext);
-    const [ fileName, setFileName ] = useState("Default");
+    const { changePad, resetPad, fileNameHandler, fileName } = useContext(SoundsContext);
 
     // Modal functionality
     const openModal = () => {
@@ -59,7 +58,7 @@ function Pads({ changer, sounds }) {
             if (result.cancelled) {
                 console.log("Cancelled");
             } else {
-                setFileName((result.assets[0].name));
+                fileNameHandler(result.assets[0].name);
                 const soundPath = result.assets[0].uri;
                 changePad(padNumber, soundPath);
             }
@@ -71,6 +70,7 @@ function Pads({ changer, sounds }) {
     const resetFile = async () => {
         // Reset file functionality !
         resetPad(padNumber);
+        fileNameHandler("Default");
     };
 
     return (

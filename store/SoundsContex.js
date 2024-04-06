@@ -416,6 +416,7 @@ function SoundsContextProvider({ children }) {
     const metronome = useRef(null);
     const [metronomeOn, setMetronomeOn] = useState(false);
     const [octaves, setOctaves] = useState(4);
+    const [fileName, setFileName] = useState("Default")
 
     const firstLoad = async () => {
         await loadMetronomeSound();
@@ -458,6 +459,7 @@ function SoundsContextProvider({ children }) {
         updateMetronomeOn(false);
     };
 
+    // Pads Changer
     const changePad = async (padNumber, soundPath) => {
         console.log(soundPath);
         await unloadPadFile(padNumber);
@@ -468,6 +470,11 @@ function SoundsContextProvider({ children }) {
         await unloadPadFile(padNumber);
         await loadDefault(padNumber);
     };
+
+    // File names for padfiles
+    const fileNameHandler = (name) => {
+        setFileName(name)
+    }
 
     return (
         <SoundsContext.Provider
@@ -486,6 +493,8 @@ function SoundsContextProvider({ children }) {
                 firstLoad,
                 changePad,
                 resetPad,
+                fileName,
+                fileNameHandler
             }}
         >
             {children}
