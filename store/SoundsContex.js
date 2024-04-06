@@ -363,18 +363,9 @@ async function loadPianoFiles(o) {
 // Unload files
 async function unloadPianoFiles() {
     try {
-        await pianoFiles[0].unloadAsync();
-        await pianoFiles[1].unloadAsync();
-        await pianoFiles[2].unloadAsync();
-        await pianoFiles[3].unloadAsync();
-        await pianoFiles[4].unloadAsync();
-        await pianoFiles[5].unloadAsync();
-        await pianoFiles[6].unloadAsync();
-        await pianoFiles[7].unloadAsync();
-        await pianoFiles[8].unloadAsync();
-        await pianoFiles[9].unloadAsync();
-        await pianoFiles[10].unloadAsync();
-        await pianoFiles[11].unloadAsync();
+        for (let i = 0; i < pianoFiles.length; i++) {
+            await pianoFiles[i].unloadAsync();
+        }
     } catch (error) {
         console.error("Error unloading", error);
     }
@@ -393,7 +384,7 @@ async function unloadPadFile(padNumber) {
 async function loadDefault(padNumber) {
     try {
         await padsFiles[padNumber].loadAsync(padFileRequires(padNumber));
-        console.log("Loaded !");
+        console.log("Loaded default!");
     } catch (error) {
         console.error("Error loading: ", error);
     }
@@ -402,8 +393,7 @@ async function loadDefault(padNumber) {
 // Load new pad file
 async function loadNewPadFile(padNumber, soundPath) {
     try {
-        const path = `require("${soundPath}")`;
-        await padsFiles[padNumber].loadAsync(path);
+        await padsFiles[padNumber].loadAsync({ uri: soundPath })
     } catch (error) {
         console.error("Error loading: ", error);
     }
@@ -468,9 +458,10 @@ function SoundsContextProvider({ children }) {
         updateMetronomeOn(false);
     };
 
-    const changePad = async (padNumber) => {
+    const changePad = async (padNumber, soundPath) => {
+        console.log(soundPath);
         await unloadPadFile(padNumber);
-        await loadNewPadFile(padNumber);
+        await loadNewPadFile(padNumber, soundPath);
     };
 
     const resetPad = async (padNumber) => {
