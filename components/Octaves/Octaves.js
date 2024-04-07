@@ -74,11 +74,12 @@ function Octaves({ iconSize }) {
                 </View>
             </Modal>
             <Pressable onPress={openModal}>
-                <Image
-                    source={require("../../assets/icons/octaves.png")}
-                    resizeMode="contain"
-                    style={{ height: iconSize }}
-                />
+                    <Image
+                        source={require("../../assets/icons/octaves.png")}
+                        resizeMode="contain"
+                        style={{ height: iconSize }}
+                    />
+
             </Pressable>
         </>
     );
@@ -127,5 +128,4 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         flex: 1,
     },
-
 });

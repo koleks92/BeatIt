@@ -6,17 +6,13 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Piano from "../components/Piano/Piano";
 import { useContext } from "react";
 import { SoundsContext } from "../store/SoundsContex";
-import Metronome from "../components/Metronome/Metronome";
 import TopOptions from "../components/UI/TopOptions";
-import Octaves from "../components/Octaves/Octaves";
 
 const scrH = Dimensions.get("window").height;
 
 function PianoScreen() {
     const insets = useSafeAreaInsets();
     const { pianoFiles } = useContext(SoundsContext);
-
-    const iconSize = scrH * 0.04;
 
     return (
         <Background>
@@ -30,14 +26,7 @@ function PianoScreen() {
                     paddingRight: insets.right,
                 }}
             >
-                <TopOptions>
-                    <View style={styles.iconContainer}>
-                        <Octaves iconSize={iconSize} />
-                    </View>
-                    <View style={styles.iconContainer}>
-                        <Metronome iconSize={iconSize} />
-                    </View>
-                </TopOptions>
+                <TopOptions mode="piano" />
                 <Piano sounds={pianoFiles} />
             </View>
         </Background>
@@ -53,4 +42,4 @@ const styles = StyleSheet.create({
         alignContent: "center",
         alignItems: "center",
     },
-})
+});
