@@ -1,6 +1,6 @@
 // Shows piano sceeen
 
-import { View, Dimensions } from "react-native";
+import { View, Dimensions, StyleSheet } from "react-native";
 import Background from "../components/UI/Background";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Piano from "../components/Piano/Piano";
@@ -31,8 +31,12 @@ function PianoScreen() {
                 }}
             >
                 <TopOptions>
-                    <Octaves iconSize={iconSize} />
-                    <Metronome iconSize={iconSize} />
+                    <View style={styles.iconContainer}>
+                        <Octaves iconSize={iconSize} />
+                    </View>
+                    <View style={styles.iconContainer}>
+                        <Metronome iconSize={iconSize} />
+                    </View>
                 </TopOptions>
                 <Piano sounds={pianoFiles} />
             </View>
@@ -41,3 +45,12 @@ function PianoScreen() {
 }
 
 export default PianoScreen;
+
+const styles = StyleSheet.create({
+    iconContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignContent: "center",
+        alignItems: "center",
+    },
+})

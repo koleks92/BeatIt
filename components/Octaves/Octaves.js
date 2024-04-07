@@ -127,10 +127,5 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         flex: 1,
     },
-    iconContainer: {
-        flex: 1,
-        justifyContent: "center",
-        alignContent: "center",
-        alignItems: "center",
-    },
+
 });

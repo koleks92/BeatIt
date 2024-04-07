@@ -2,7 +2,7 @@
 
 // Shows pads/mpc sceeen
 
-import { View, Dimensions } from "react-native";
+import { View, Dimensions, StyleSheet } from "react-native";
 import Background from "../components/UI/Background";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Pads from "../components/Pads/Pads";
@@ -13,7 +13,6 @@ import Metronome from "../components/Metronome/Metronome";
 import PadsChanger from "../components/UI/ButtonPadsChanger";
 import { useNavigation } from "@react-navigation/native";
 
-
 const scrH = Dimensions.get("window").height;
 
 function PadsScreen() {
@@ -21,12 +20,11 @@ function PadsScreen() {
     const { padsFiles } = useContext(SoundsContext);
     const navigation = useNavigation();
 
-
     const iconSize = scrH * 0.04;
 
     function onPress() {
         navigation.navigate("PadsChangerScreen");
-    };
+    }
 
     return (
         <Background>
@@ -41,8 +39,12 @@ function PadsScreen() {
                 }}
             >
                 <TopOptions>
-                    <PadsChanger iconSize={iconSize} onPress={onPress} />
-                    <Metronome iconSize={iconSize} />
+                    <View style={styles.iconContainer}>
+                        <PadsChanger iconSize={iconSize} onPress={onPress} />
+                    </View>
+                    <View style={styles.iconContainer}>
+                        <Metronome iconSize={iconSize} />
+                    </View>
                 </TopOptions>
                 <Pads sounds={padsFiles} />
             </View>
@@ -51,3 +53,12 @@ function PadsScreen() {
 }
 
 export default PadsScreen;
+
+const styles = StyleSheet.create({
+    iconContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignContent: "center",
+        alignItems: "center",
+    },
+})

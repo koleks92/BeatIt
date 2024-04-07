@@ -210,10 +210,5 @@ const styles = StyleSheet.create({
     buttonView: {
         flex: 1,
     },
-    iconContainer: {
-        flex: 1,
-        justifyContent: "center",
-        alignContent: "center",
-        alignItems: "center",
-    },
+
 });

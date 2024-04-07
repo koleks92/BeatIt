@@ -1,5 +1,4 @@
 import { View, StyleSheet, Dimensions } from "react-native";
-import Metronome from "../Metronome/Metronome";
 
 const scrH = Dimensions.get("window").height;
 
@@ -11,6 +10,7 @@ export default TopOptions;
 
 const styles = StyleSheet.create({
     root: {
+        flex: 1,
         flexDirection: "row",
         justifyContent: "space-evenly",
         marginTop: scrH * 0.01,

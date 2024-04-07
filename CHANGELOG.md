@@ -1,3 +1,7 @@
+## 1.1.1 (2024-04-07)
+Fix:
+    - Octaves changing overload
+
 ## 1.1.0 (2024-04-07)
 Features:
     - Octaves
