@@ -20,9 +20,9 @@ function padFileRequires(padNumber) {
     switch (padNumber) {
         case 0: // Bass
             return require("../sounds/pads/0.mp3");
-        case 1: 
+        case 1:
             return require("../sounds/pads/1.mp3");
-        case 2: 
+        case 2:
             return require("../sounds/pads/2.mp3");
         case 3: // Clap
             return require("../sounds/pads/3.mp3");
@@ -53,7 +53,7 @@ function padFileRequires(padNumber) {
 
 async function loadPadsFiles() {
     try {
-        for (let i=0; i < padsFiles.length; i++) {
+        for (let i = 0; i < padsFiles.length; i++) {
             await padsFiles[i].loadAsync(padFileRequires(i));
         }
     } catch (error) {
@@ -393,7 +393,7 @@ async function loadDefault(padNumber) {
 // Load new pad file
 async function loadNewPadFile(padNumber, soundPath) {
     try {
-        await padsFiles[padNumber].loadAsync({ uri: soundPath })
+        await padsFiles[padNumber].loadAsync({ uri: soundPath });
     } catch (error) {
         console.error("Error loading: ", error);
     }
@@ -416,7 +416,8 @@ function SoundsContextProvider({ children }) {
     const metronome = useRef(null);
     const [metronomeOn, setMetronomeOn] = useState(false);
     const [octaves, setOctaves] = useState(4);
-    const [fileName, setFileName] = useState("Default")
+    const [fileName, setFileName] = useState("Default");
+    const [octavesUpdating, setOctavesUpdating] = useState(false);
 
     const firstLoad = async () => {
         await loadMetronomeSound();
@@ -429,9 +430,11 @@ function SoundsContextProvider({ children }) {
     }, []);
 
     const updateOctaves = async (octave) => {
+        setOctavesUpdating(true);
         await unloadPianoFiles();
         await loadPianoFiles(octave);
         setOctaves(octave);
+        setOctavesUpdating(false);
     };
 
     // Metronome
@@ -473,8 +476,8 @@ function SoundsContextProvider({ children }) {
 
     // File names for padfiles
     const fileNameHandler = (name) => {
-        setFileName(name)
-    }
+        setFileName(name);
+    };
 
     return (
         <SoundsContext.Provider
@@ -483,6 +486,7 @@ function SoundsContextProvider({ children }) {
                 pianoFiles,
                 octaves,
                 updateOctaves,
+                octavesUpdating,
 
                 // Pads
                 padsFiles,
@@ -498,7 +502,7 @@ function SoundsContextProvider({ children }) {
                 updateMetronomeOn,
                 metronome,
                 startMetronome,
-                endMetronome
+                endMetronome,
             }}
         >
             {children}

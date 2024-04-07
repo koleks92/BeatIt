@@ -17,7 +17,8 @@ const scrW = Dimensions.get("window").width;
 
 function Octaves({ iconSize }) {
     const [modalVisible, setModalVisible] = useState(false);
-    const { octaves, updateOctaves } = useContext(SoundsContext);
+    const { octaves, updateOctaves, octavesUpdating } =
+        useContext(SoundsContext);
 
     // Modal functionality
     const openModal = () => {
@@ -29,16 +30,20 @@ function Octaves({ iconSize }) {
     };
 
     const onMinus = () => {
-        if (octaves === 1) {
-        } else {
-            updateOctaves(octaves - 1);
+        if (octavesUpdating === false) {
+            if (octaves === 1) {
+            } else {
+                const result = updateOctaves(octaves - 1);
+            }
         }
     };
 
     const onPlus = () => {
-        if (octaves === 7) {
-        } else {
-            updateOctaves(octaves + 1);
+        if (octavesUpdating === false) {
+            if (octaves === 7) {
+            } else {
+                updateOctaves(octaves + 1);
+            }
         }
     };
 
