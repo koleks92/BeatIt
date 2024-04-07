@@ -141,7 +141,7 @@ function Metronome({ iconSize }) {
                     </View>
                 </View>
             </Modal>
-            <Pressable onPress={openModal} style={styles.iconContainer}>
+            <Pressable onPress={openModal}>
                 <Image
                     source={
                         metronomeOn

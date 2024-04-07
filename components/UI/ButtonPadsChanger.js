@@ -4,7 +4,7 @@ const scrW = Dimensions.get("window").width;
 
 function ButtonPadsChanger({ iconSize, onPress }) {
     return (
-        <Pressable onPress={onPress} style={styles.iconContainer}>
+        <Pressable onPress={onPress}>
             <Image
                 source={require("../../assets/icons/edit.png")}
                 resizeMode="contain"
@@ -15,7 +15,3 @@ function ButtonPadsChanger({ iconSize, onPress }) {
 }
 
 export default ButtonPadsChanger;
-
-const styles = StyleSheet.create({
-
-});

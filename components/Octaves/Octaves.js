@@ -73,7 +73,7 @@ function Octaves({ iconSize }) {
                     </View>
                 </View>
             </Modal>
-            <Pressable onPress={openModal} style={styles.iconContainer}>
+            <Pressable onPress={openModal}>
                 <Image
                     source={require("../../assets/icons/octaves.png")}
                     resizeMode="contain"
