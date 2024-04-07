@@ -479,22 +479,26 @@ function SoundsContextProvider({ children }) {
     return (
         <SoundsContext.Provider
             value={{
+                // Piano
                 pianoFiles,
+                octaves,
+                updateOctaves,
+
+                // Pads
                 padsFiles,
+                changePad,
+                resetPad,
+                fileName,
+                fileNameHandler,
+
+                // Metronome
                 BPM,
                 updateBPM,
                 metronomeOn,
                 updateMetronomeOn,
                 metronome,
                 startMetronome,
-                endMetronome,
-                octaves,
-                updateOctaves,
-                firstLoad,
-                changePad,
-                resetPad,
-                fileName,
-                fileNameHandler
+                endMetronome
             }}
         >
             {children}
