@@ -77,7 +77,7 @@ function Octaves({ iconSize }) {
                     <Image
                         source={require("../../assets/icons/octaves.png")}
                         resizeMode="contain"
-                        style={{ height: iconSize }}
+                        style={[{ height: iconSize }, styles.imageStyling]}
                     />
 
             </Pressable>
@@ -128,4 +128,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         flex: 1,
     },
+    imageStyling: {
+        maxWidth: '100%'
+    }
 });
