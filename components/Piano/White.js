@@ -5,7 +5,6 @@ import {
   Gesture,
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
-import { Colors } from "../../constants/colors";
 
 // Dimensions in landscape mode !
 // More comfortable for the user

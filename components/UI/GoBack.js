@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Dimensions, Image } from "react-native";
+import { Pressable, StyleSheet, Image } from "react-native";
 
 
 function GoBack({iconSize, onPress}) {

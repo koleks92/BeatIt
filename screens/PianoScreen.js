@@ -1,6 +1,6 @@
 // Shows piano sceeen
 
-import { View, Dimensions, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import Background from "../components/UI/Background";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Piano from "../components/Piano/Piano";
@@ -8,7 +8,6 @@ import { useContext } from "react";
 import { SoundsContext } from "../store/SoundsContex";
 import TopOptions from "../components/UI/TopOptions";
 
-const scrH = Dimensions.get("window").height;
 
 function PianoScreen() {
     const insets = useSafeAreaInsets();
